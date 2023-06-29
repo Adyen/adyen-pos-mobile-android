@@ -90,9 +90,9 @@ class PaymentSampleAppFragment : Fragment() {
             }
 
         private fun generateNexoRequest(
-            serviceId: String = "1117162143",
-            saleId: String = "mb-cagriu",
-            transactionID: String = "29752",
+            serviceId: String = UUID.randomUUID().toString(),
+            saleId: String = "AndroidSampleApp",
+            transactionID: String = "SampleApp-AndroidTx",
             poiId: String,
             currency: String,
             requestedAmount: String,
