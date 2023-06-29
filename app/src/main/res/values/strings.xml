@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">Sample Payment App</string>
+    <!-- Strings used for fragments for navigation -->
+    <string name="button_pay">Pay</string>
+
+    <string name="first_fragment_connect_to_device">Connect to the device first.</string>
+    <string name="first_fragment_default_payment">Default payment is €5</string>
+</resources>
