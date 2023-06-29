@@ -3,13 +3,17 @@ package com.adyen.sampleapp
 import com.adyen.ipp.authentication.AuthenticationProvider
 import com.adyen.ipp.authentication.AuthenticationResponse
 import com.adyen.ipp.authentication.AuthenticationService
-import kotlinx.coroutines.*
-import okhttp3.*
-import okhttp3.MediaType.Companion.toMediaType
-import okhttp3.RequestBody.Companion.toRequestBody
 import org.json.JSONObject
 import java.io.IOException
 import kotlin.coroutines.resume
+import kotlinx.coroutines.suspendCancellableCoroutine
+import okhttp3.Call
+import okhttp3.Callback
+import okhttp3.MediaType.Companion.toMediaType
+import okhttp3.OkHttpClient
+import okhttp3.Request
+import okhttp3.RequestBody.Companion.toRequestBody
+import okhttp3.Response
 
 class MyAuthenticationService : AuthenticationService() {
     override val authenticationProvider: AuthenticationProvider
