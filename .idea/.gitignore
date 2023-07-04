@@ -1,3 +1,32 @@
 # Default ignored files
 /shelf/
-/workspace.xml
+
+# Current User-specific configurations
+libraries/
+.name
+compiler.xml
+deploymentTargetDropDown.xml
+gradle.xml
+kotlinScripting.xml
+misc.xml
+modules.xml
+vcs.xml
+workspace.xml
+
+# User-specific configurations
+caches/
+shelf/
+tasks.xml
+copyright/profiles_settings.xml
+encodings.xml
+scopes/scope_settings.xml
+dictionaries
+jsLibraryMappings.xml
+datasources.xml
+dataSources.ids
+sqlDataSources.xml
+dynamic.xml
+uiDesigner.xml
+assetWizardSettings.xml
+jarRepositories.xml
+navEditor.xml
