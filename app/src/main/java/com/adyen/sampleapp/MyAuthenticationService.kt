@@ -16,6 +16,11 @@ import okhttp3.RequestBody.Companion.toRequestBody
 import okhttp3.Response
 
 class MyAuthenticationService : AuthenticationService() {
+
+    val apiKey = BuildConfig.EnvironmentApiKey
+    val merchantAccount = BuildConfig.EnvironmentMerchantAccount
+    val apiUrl = BuildConfig.EnvironmentUrl
+
     override val authenticationProvider: AuthenticationProvider
         get() = object : AuthenticationProvider {
             override suspend fun authenticate(setupToken: String): Result<AuthenticationResponse> {
@@ -23,7 +28,7 @@ class MyAuthenticationService : AuthenticationService() {
 
                 val jsonObject = JSONObject()
                 // Please put below your merchant account
-                jsonObject.put("merchantAccount", "Your merchant account")
+                jsonObject.put("merchantAccount", merchantAccount)
                 jsonObject.put("setupToken", setupToken)
 
                 val mediaType = "application/json".toMediaType()
@@ -31,11 +36,11 @@ class MyAuthenticationService : AuthenticationService() {
 
                 val request = Request.Builder()
                     // Please add your URL to receive session token
-                    .url("Your URL to receive session tokens")
+                    .url(apiUrl)
                     .addHeader(
                         "x-api-key",
                         // Please add api key
-                        "Your api key to receive session tokens"
+                        apiKey
                     )
                     .post(body)
                     .build()

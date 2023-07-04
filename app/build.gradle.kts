@@ -1,6 +1,15 @@
+import java.io.FileInputStream
+import java.util.Properties
+import com.android.build.api.variant.BuildConfigField
+
 plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
+}
+
+val localPropsFile: String = System.getenv("LOCAL_PROPS") ?: (rootProject.rootDir.absolutePath + "/local.properties")
+val localProperties = Properties().apply {
+    load(FileInputStream(localPropsFile))
 }
 
 android {
@@ -34,6 +43,29 @@ android {
 
     buildFeatures {
         viewBinding = true
+        buildConfig = true
+    }
+}
+
+androidComponents {
+    onVariants {
+        it.apply {
+            val environmentUrl = localProperties.getProperty("environment.url")
+            buildConfigFields.put(
+                "EnvironmentUrl",
+                BuildConfigField("String", "\"$environmentUrl\"", "Env URL"),
+            )
+            val environmentApiKey = localProperties.getProperty("environment.apiKey")
+            buildConfigFields.put(
+                "EnvironmentApiKey",
+                BuildConfigField("String", "\"$environmentApiKey\"", "API Key"),
+            )
+            val environmentMerchantAccount = localProperties.getProperty("environment.merchantAccount")
+            buildConfigFields.put(
+                "EnvironmentMerchantAccount",
+                BuildConfigField("String", "\"$environmentMerchantAccount\"", "Merchant Account"),
+            )
+        }
     }
 }
 
