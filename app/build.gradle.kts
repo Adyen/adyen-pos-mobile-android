@@ -71,10 +71,11 @@ androidComponents {
 
 dependencies {
 
-    debugImplementation("com.adyen.ipp:pos-mobile-debug:0.2.4")
-    debugImplementation("com.adyen.ipp:card-reader-management-debug:0.2.4")
-    releaseImplementation("com.adyen.ipp:pos-mobile-release:0.2.4")
-    releaseImplementation("com.adyen.ipp:card-reader-management-release:0.2.4")
+    val adyenPosMobileVersion = "0.2.4"
+    debugImplementation("com.adyen.ipp:pos-mobile-debug:$adyenPosMobileVersion")
+    debugImplementation("com.adyen.ipp:card-reader-management-debug:$adyenPosMobileVersion")
+    releaseImplementation("com.adyen.ipp:pos-mobile-release:$adyenPosMobileVersion")
+    releaseImplementation("com.adyen.ipp:card-reader-management-release:$adyenPosMobileVersion")
 
     implementation("androidx.core:core-ktx:1.10.1")
     implementation("androidx.appcompat:appcompat:1.6.1")
