@@ -14,11 +14,13 @@ import com.adyen.ipp.cardreader.device.DeviceManager
 import com.adyen.ipp.payment.PaymentInterfaceType
 import com.adyen.ipp.payment.TransactionRequest
 import com.adyen.sampleapp.databinding.FragmentPaymentBinding
+import java.util.Date
+import java.util.Locale
+import java.util.UUID
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.launch
-import java.util.*
 
 /**
  * A simple [Fragment] subclass as the default destination in the navigation.
@@ -26,8 +28,8 @@ import java.util.*
 class PaymentSampleAppFragment : Fragment() {
 
     private lateinit var binding: FragmentPaymentBinding
-    private val resultLauncher = InPersonPayments.registerForPaymentResult(this) {
-        val resultText = if (it.success) "Payment Successful" else "Payment Failed"
+    private val resultLauncher = InPersonPayments.registerForPaymentResult(this) { paymentResult ->
+        val resultText = if (paymentResult.success) "Payment Successful" else "Payment Failed"
         Toast.makeText(requireContext(), resultText, Toast.LENGTH_LONG).show()
     }
 
