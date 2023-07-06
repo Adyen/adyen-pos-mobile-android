@@ -9,6 +9,8 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import com.adyen.ipp.InPersonPayments
+import com.adyen.ipp.cardreader.AdyenCardReaders
+import com.adyen.ipp.cardreader.device.DeviceManager
 import com.adyen.ipp.payment.PaymentInterfaceType
 import com.adyen.ipp.payment.TransactionRequest
 import com.adyen.sampleapp.databinding.FragmentPaymentBinding
@@ -23,19 +25,11 @@ import java.util.*
  */
 class PaymentSampleAppFragment : Fragment() {
 
-    private var _binding: FragmentPaymentBinding? = null
+    private lateinit var binding: FragmentPaymentBinding
     private val resultLauncher = InPersonPayments.registerForPaymentResult(this) {
-
-        Toast.makeText(
-            requireContext(),
-            "PAYMENT RESULT RECEIVED -> RESULT -> success is -> ${it.success}",
-            Toast.LENGTH_LONG
-        ).show()
+        val resultText = if (it.success) "Payment Successful" else "Payment Failed"
+        Toast.makeText(requireContext(), resultText, Toast.LENGTH_LONG).show()
     }
-
-    // This property is only valid between onCreateView and
-    // onDestroyView.
-    private val binding get() = _binding!!
 
     private val job = Job()
     private val uiScope = CoroutineScope(Dispatchers.Main + job)
@@ -44,23 +38,27 @@ class PaymentSampleAppFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
+        binding = FragmentPaymentBinding.inflate(inflater, container, false)
 
-        _binding = FragmentPaymentBinding.inflate(inflater, container, false)
+        DeviceManager.INSTANCE
+        AdyenCardReaders.deviceManager.activeDeviceInfo
+        InPersonPayments
+
+
         return binding.root
-
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding.buttonPay.setOnClickListener {
             uiScope.launch {
-                tryToMakePayment()
+                startPayment()
             }
         }
     }
 
-    private suspend fun tryToMakePayment() {
-        val paymentInterface = InPersonPayments.getPaymentInterface(PaymentInterfaceType.TapToPay)
+    private suspend fun startPayment() {
+        val paymentInterface = InPersonPayments.getPaymentInterface(PaymentInterfaceType.CardReader())
 
         InPersonPayments.performTransaction(
             context = requireContext(),
@@ -75,11 +73,6 @@ class PaymentSampleAppFragment : Fragment() {
             paymentLauncher = resultLauncher,
             authenticationServiceClass = MyAuthenticationService::class.java,
         )
-    }
-
-    override fun onDestroyView() {
-        super.onDestroyView()
-        _binding = null
     }
 
     companion object {
@@ -100,33 +93,35 @@ class PaymentSampleAppFragment : Fragment() {
 
             val timeStamp = DATE_FORMAT.format(Date())
 
-            return "{\n" +
-                    "  \"SaleToPOIRequest\": {\n" +
-                    "    \"MessageHeader\": {\n" +
-                    "      \"ProtocolVersion\": \"3.0\",\n" +
-                    "      \"MessageClass\": \"Service\",\n" +
-                    "      \"MessageCategory\": \"Payment\",\n" +
-                    "      \"MessageType\": \"Request\",\n" +
-                    "      \"ServiceID\": \"$serviceId\",\n" +
-                    "      \"SaleID\": \"$saleId\",\n" +
-                    "      \"POIID\": \"$poiId\"\n" +
-                    "    },\n" +
-                    "    \"PaymentRequest\": {\n" +
-                    "      \"SaleData\": {\n" +
-                    "        \"SaleTransactionID\": {\n" +
-                    "          \"TransactionID\": \"$transactionID\",\n" +
-                    "          \"TimeStamp\": \"$timeStamp\"\n" +
-                    "        }\n" +
-                    "      },\n" +
-                    "      \"PaymentTransaction\": {\n" +
-                    "        \"AmountsReq\": {\n" +
-                    "          \"Currency\": \"$currency\",\n" +
-                    "          \"RequestedAmount\": $requestedAmount\n" +
-                    "        }\n" +
-                    "      }\n" +
-                    "    }\n" +
-                    "  }\n" +
-                    "}"
+            return """
+                |{
+                |  "SaleToPOIRequest": {
+                |    "MessageHeader": {
+                |      "ProtocolVersion": "3.0",
+                |      "MessageClass": "Service",
+                |      "MessageCategory": "Payment",
+                |      "MessageType": "Request",
+                |      "ServiceID": "$serviceId",
+                |      "SaleID": "$saleId",
+                |      "POIID": "$poiId"
+                |    },
+                |    "PaymentRequest": {
+                |      "SaleData": {
+                |        "SaleTransactionID": {
+                |          "TransactionID": "$transactionID",
+                |          "TimeStamp": "$timeStamp"
+                |        }
+                |      },
+                |      "PaymentTransaction": {
+                |        "AmountsReq": {
+                |          "Currency": "$currency",
+                |          "RequestedAmount": $requestedAmount
+                |        }
+                |      }
+                |    }
+                |  }
+                |}
+            """.trimMargin("|")
         }
     }
 }
