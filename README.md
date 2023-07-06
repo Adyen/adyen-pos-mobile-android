@@ -12,7 +12,7 @@ artifacts.url=<URL of the repository>
 artifacts.username=<Your username>
 artifacts.token=<Your access token to the repository>
 # URL and credentials to the Adyen TEST environment
-environment.url=https://checkout-test.adyen.com
+environment.url=https://checkout-test.adyen.com/checkout/possdk/v68/sessions
 environment.apiKey=<Your API key>
 environment.merchantAccount=<Your merchant account>
 ```

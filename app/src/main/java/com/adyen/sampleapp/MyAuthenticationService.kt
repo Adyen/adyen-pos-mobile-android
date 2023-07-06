@@ -3,7 +3,6 @@ package com.adyen.sampleapp
 import com.adyen.ipp.authentication.AuthenticationProvider
 import com.adyen.ipp.authentication.AuthenticationResponse
 import com.adyen.ipp.authentication.AuthenticationService
-import org.json.JSONObject
 import java.io.IOException
 import kotlin.coroutines.resume
 import kotlinx.coroutines.suspendCancellableCoroutine
@@ -14,6 +13,9 @@ import okhttp3.OkHttpClient
 import okhttp3.Request
 import okhttp3.RequestBody.Companion.toRequestBody
 import okhttp3.Response
+import okhttp3.logging.HttpLoggingInterceptor
+import okhttp3.logging.HttpLoggingInterceptor.Level
+import org.json.JSONObject
 
 class MyAuthenticationService : AuthenticationService() {
 
@@ -24,10 +26,14 @@ class MyAuthenticationService : AuthenticationService() {
     override val authenticationProvider: AuthenticationProvider
         get() = object : AuthenticationProvider {
             override suspend fun authenticate(setupToken: String): Result<AuthenticationResponse> {
-                val client = OkHttpClient()
+                val logging = HttpLoggingInterceptor().apply {
+                    setLevel(Level.BODY)
+                }
+                val client = OkHttpClient.Builder().apply {
+                    addInterceptor(logging)
+                }.build()
 
                 val jsonObject = JSONObject()
-                // Please put below your merchant account
                 jsonObject.put("merchantAccount", merchantAccount)
                 jsonObject.put("setupToken", setupToken)
 
@@ -35,13 +41,8 @@ class MyAuthenticationService : AuthenticationService() {
                 val body = jsonObject.toString().toRequestBody(mediaType)
 
                 val request = Request.Builder()
-                    // Please add your URL to receive session token
                     .url(apiUrl)
-                    .addHeader(
-                        "x-api-key",
-                        // Please add api key
-                        apiKey
-                    )
+                    .addHeader("x-api-key", apiKey)
                     .post(body)
                     .build()
 
@@ -57,9 +58,7 @@ class MyAuthenticationService : AuthenticationService() {
                                 continuation.resume(
                                     Result.success(
                                         AuthenticationResponse(
-                                            json.optString(
-                                                "sdkData"
-                                            )
+                                            json.optString("sdkData")
                                         )
                                     )
                                 )
