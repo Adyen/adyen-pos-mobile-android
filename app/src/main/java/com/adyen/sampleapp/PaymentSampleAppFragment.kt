@@ -99,6 +99,7 @@ class PaymentSampleAppFragment : Fragment() {
         ): String {
 
             val timeStamp = DATE_FORMAT.format(Date())
+            val maxServiceIdSize = 10
 
             return """
                 |{
@@ -108,7 +109,7 @@ class PaymentSampleAppFragment : Fragment() {
                 |      "MessageClass": "Service",
                 |      "MessageCategory": "Payment",
                 |      "MessageType": "Request",
-                |      "ServiceID": "$serviceId",
+                |      "ServiceID": "${serviceId.take(maxServiceIdSize)}",
                 |      "SaleID": "$saleId",
                 |      "POIID": "$poiId"
                 |    },
