@@ -11,6 +11,7 @@ import androidx.fragment.app.Fragment
 import com.adyen.ipp.InPersonPayments
 import com.adyen.ipp.cardreader.AdyenCardReaders
 import com.adyen.ipp.cardreader.device.DeviceManager
+import com.adyen.ipp.core.ext.decodeFromBase64String
 import com.adyen.ipp.payment.PaymentInterfaceType
 import com.adyen.ipp.payment.TransactionRequest
 import com.adyen.sampleapp.databinding.FragmentPaymentBinding
@@ -21,16 +22,20 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.launch
+import logcat.logcat
 
 /**
  * A simple [Fragment] subclass as the default destination in the navigation.
  */
 class PaymentSampleAppFragment : Fragment() {
 
+    private val logTag = "Transaction"
+
     private lateinit var binding: FragmentPaymentBinding
     private val resultLauncher = InPersonPayments.registerForPaymentResult(this) { paymentResult ->
         val resultText = if (paymentResult.success) "Payment Successful" else "Payment Failed"
         Toast.makeText(requireContext(), resultText, Toast.LENGTH_LONG).show()
+        logcat(tag = logTag) { "Result: \n ${paymentResult.data.decodeFromBase64String()}"}
     }
 
     private val job = Job()
@@ -61,17 +66,17 @@ class PaymentSampleAppFragment : Fragment() {
 
     private suspend fun startPayment() {
         val paymentInterface = InPersonPayments.getPaymentInterface(PaymentInterfaceType.CardReader())
+        val nexoRequest: String = generateNexoRequest(
+            requestedAmount = "5",
+            currency = "USD",
+            poiId = InPersonPayments.getInstallationId()
+        )
+        logcat(logTag) { "NexoRequest:\n$nexoRequest" }
 
         InPersonPayments.performTransaction(
             context = requireContext(),
             paymentInterface = paymentInterface.getOrThrow(),
-            transactionRequest = TransactionRequest.create(
-                generateNexoRequest(
-                    requestedAmount = "5",
-                    currency = "USD",
-                    poiId = InPersonPayments.getInstallationId()
-                )
-            ).getOrThrow(),
+            transactionRequest = TransactionRequest.create(nexoRequest).getOrThrow(),
             paymentLauncher = resultLauncher,
             authenticationServiceClass = MyAuthenticationService::class.java,
         )
