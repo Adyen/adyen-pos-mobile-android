@@ -46,12 +46,6 @@ class PaymentSampleAppFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         binding = FragmentPaymentBinding.inflate(inflater, container, false)
-
-        DeviceManager.INSTANCE
-        AdyenCardReaders.deviceManager.activeDeviceInfo
-        InPersonPayments
-
-
         return binding.root
     }
 
