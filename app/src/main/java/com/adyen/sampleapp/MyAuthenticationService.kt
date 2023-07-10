@@ -19,31 +19,48 @@ import org.json.JSONObject
 
 class MyAuthenticationService : AuthenticationService() {
 
+    /**
+     *  ------------
+     * | IMPORTANT |
+     *  ------------
+     *
+     * This part of the code sends the `setupToken` to authenticate you and your app with Adyen.
+     *
+     * In this example, for simplicity and ease of use, we are using okhttp to connect directly to Adyen.
+     * This is NOT how your app should be implemented! Your credentials and API Key should be kept secret and safe
+     * withing your servers, and should only be used for direct server to server communication with Adyen.
+     *
+     * In a production environment you should send the `setupToken` to you server and forward the authentication
+     * request from there to the Adyen server, and then return the `sdkData` result here.
+     *
+     * More information on the Docs page.
+     * https://docs.adyen.com/point-of-sale/ipp-mobile/card-reader-android/integration-reader#session
+     */
+
+    // See README for how to define these.
     val apiKey = BuildConfig.EnvironmentApiKey
     val merchantAccount = BuildConfig.EnvironmentMerchantAccount
-    val apiUrl = BuildConfig.EnvironmentUrl
 
+    // This app is intended to be used only against the TEST environment.
+    val apiUrl = "https://checkout-test.adyen.com/checkout/possdk/v68/sessions"
+
+    // You can also declare this implementation somewhere else and pass it using your Dependency Injection system.
     override val authenticationProvider: AuthenticationProvider
         get() = object : AuthenticationProvider {
             override suspend fun authenticate(setupToken: String): Result<AuthenticationResponse> {
-                val logging = HttpLoggingInterceptor().apply {
-                    setLevel(Level.BODY)
+                val client = createOkHttpClient()
+
+                val jsonObject = JSONObject().apply {
+                    put("merchantAccount", merchantAccount)
+                    put("setupToken", setupToken)
                 }
-                val client = OkHttpClient.Builder().apply {
-                    addInterceptor(logging)
-                }.build()
-
-                val jsonObject = JSONObject()
-                jsonObject.put("merchantAccount", merchantAccount)
-                jsonObject.put("setupToken", setupToken)
-
                 val mediaType = "application/json".toMediaType()
-                val body = jsonObject.toString().toRequestBody(mediaType)
+                val requestBody = jsonObject.toString().toRequestBody(mediaType)
 
                 val request = Request.Builder()
                     .url(apiUrl)
                     .addHeader("x-api-key", apiKey)
-                    .post(body)
+                    .post(requestBody)
                     .build()
 
                 return suspendCancellableCoroutine { continuation ->
@@ -68,6 +85,15 @@ class MyAuthenticationService : AuthenticationService() {
                         }
                     })
                 }
+            }
+
+            private fun createOkHttpClient(): OkHttpClient {
+                val logging = HttpLoggingInterceptor().apply {
+                    setLevel(Level.BODY)
+                }
+                return OkHttpClient.Builder().apply {
+                    addInterceptor(logging)
+                }.build()
             }
         }
 }
