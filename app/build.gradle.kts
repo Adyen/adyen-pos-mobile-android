@@ -50,11 +50,6 @@ android {
 androidComponents {
     onVariants {
         it.apply {
-            val environmentUrl = localProperties.getProperty("environment.url")
-            buildConfigFields.put(
-                "EnvironmentUrl",
-                BuildConfigField("String", "\"$environmentUrl\"", "Env URL"),
-            )
             val environmentApiKey = localProperties.getProperty("environment.apiKey")
             buildConfigFields.put(
                 "EnvironmentApiKey",
