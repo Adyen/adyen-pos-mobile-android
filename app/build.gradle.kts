@@ -30,6 +30,7 @@ android {
         getByName("release") {
             isMinifyEnabled = false
             proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro")
+            signingConfig = signingConfigs.getByName("debug")
         }
     }
 
@@ -66,7 +67,7 @@ androidComponents {
 
 dependencies {
 
-    val adyenPosMobileVersion = "0.2.4"
+    val adyenPosMobileVersion = "0.3.0"
     debugImplementation("com.adyen.ipp:pos-mobile-debug:$adyenPosMobileVersion")
     debugImplementation("com.adyen.ipp:card-reader-management-debug:$adyenPosMobileVersion")
     releaseImplementation("com.adyen.ipp:pos-mobile-release:$adyenPosMobileVersion")

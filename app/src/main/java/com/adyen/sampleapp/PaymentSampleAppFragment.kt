@@ -9,9 +9,8 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import com.adyen.ipp.InPersonPayments
-import com.adyen.ipp.cardreader.AdyenCardReaders
-import com.adyen.ipp.cardreader.device.DeviceManager
 import com.adyen.ipp.core.ext.decodeFromBase64String
+import com.adyen.ipp.payment.PaymentInterface
 import com.adyen.ipp.payment.PaymentInterfaceType
 import com.adyen.ipp.payment.TransactionRequest
 import com.adyen.sampleapp.databinding.FragmentPaymentBinding
@@ -51,15 +50,21 @@ class PaymentSampleAppFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        binding.buttonPay.setOnClickListener {
+        binding.buttonPayNyc1.setOnClickListener {
             uiScope.launch {
-                startPayment()
+                val nyc1Interface = InPersonPayments.getPaymentInterface(PaymentInterfaceType.CardReader())
+                startPayment(nyc1Interface.getOrThrow())
+            }
+        }
+        binding.buttonPayT2p.setOnClickListener {
+            uiScope.launch {
+                val t2pInterface = InPersonPayments.getPaymentInterface(PaymentInterfaceType.TapToPay)
+                startPayment(t2pInterface.getOrThrow())
             }
         }
     }
 
-    private suspend fun startPayment() {
-        val paymentInterface = InPersonPayments.getPaymentInterface(PaymentInterfaceType.CardReader())
+    private suspend fun startPayment(paymentInterface: PaymentInterface<*>) {
         val nexoRequest: String = generateNexoRequest(
             requestedAmount = "5",
             currency = "USD",
@@ -69,7 +74,7 @@ class PaymentSampleAppFragment : Fragment() {
 
         InPersonPayments.performTransaction(
             context = requireContext(),
-            paymentInterface = paymentInterface.getOrThrow(),
+            paymentInterface = paymentInterface,
             transactionRequest = TransactionRequest.create(nexoRequest).getOrThrow(),
             paymentLauncher = resultLauncher,
             authenticationServiceClass = MyAuthenticationService::class.java,
