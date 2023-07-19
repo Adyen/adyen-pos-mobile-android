@@ -52,28 +52,32 @@ class PaymentSampleAppFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         binding.buttonPayNyc1.setOnClickListener {
             uiScope.launch {
-                val nyc1Interface =
-                    InPersonPayments.getPaymentInterface(PaymentInterfaceType.CardReader())
-                nyc1Interface.getOrNull()?.let {
-                    startPayment(it)
-                } ?: Toast.makeText(
-                    requireContext(),
-                    R.string.toast_no_bt_permissions,
-                    Toast.LENGTH_LONG
-                ).show()
+                InPersonPayments.getPaymentInterface(PaymentInterfaceType.CardReader())
+                    .onSuccess { nyc1Interface ->
+                        startPayment(nyc1Interface)
+                    }
+                    .onFailure {
+                        Toast.makeText(
+                            requireContext(),
+                            R.string.toast_no_bt_permissions,
+                            Toast.LENGTH_LONG
+                        ).show()
+                    }
             }
         }
         binding.buttonPayT2p.setOnClickListener {
             uiScope.launch {
-                val t2pInterface =
-                    InPersonPayments.getPaymentInterface(PaymentInterfaceType.TapToPay)
-                t2pInterface.getOrNull()?.let {
-                    startPayment(it)
-                }?: Toast.makeText(
-                    requireContext(),
-                    R.string.toast_t2p_interface_creation_failed,
-                    Toast.LENGTH_LONG
-                ).show()
+                InPersonPayments.getPaymentInterface(PaymentInterfaceType.TapToPay)
+                    .onSuccess { t2pInterface ->
+                        startPayment(t2pInterface)
+                    }
+                    .onFailure {
+                        Toast.makeText(
+                            requireContext(),
+                            R.string.toast_t2p_interface_creation_failed,
+                            Toast.LENGTH_LONG
+                        ).show()
+                    }
             }
         }
     }
