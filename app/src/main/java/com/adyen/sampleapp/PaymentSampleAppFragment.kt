@@ -53,31 +53,35 @@ class PaymentSampleAppFragment : Fragment() {
         binding.buttonPayNyc1.setOnClickListener {
             uiScope.launch {
                 InPersonPayments.getPaymentInterface(PaymentInterfaceType.CardReader())
-                    .onSuccess { nyc1Interface ->
-                        startPayment(nyc1Interface)
-                    }
-                    .onFailure {
-                        Toast.makeText(
-                            requireContext(),
-                            R.string.toast_no_bt_permissions,
-                            Toast.LENGTH_LONG
-                        ).show()
-                    }
+                    .fold(
+                        onSuccess = { nyc1Interface ->
+                            startPayment(nyc1Interface)
+                        },
+                        onFailure = {
+                            Toast.makeText(
+                                requireContext(),
+                                R.string.toast_no_bt_permissions,
+                                Toast.LENGTH_LONG
+                            ).show()
+                        }
+                    )
             }
         }
         binding.buttonPayT2p.setOnClickListener {
             uiScope.launch {
                 InPersonPayments.getPaymentInterface(PaymentInterfaceType.TapToPay)
-                    .onSuccess { t2pInterface ->
-                        startPayment(t2pInterface)
-                    }
-                    .onFailure {
-                        Toast.makeText(
-                            requireContext(),
-                            R.string.toast_t2p_interface_creation_failed,
-                            Toast.LENGTH_LONG
-                        ).show()
-                    }
+                    .fold(
+                        onSuccess = { t2pInterface ->
+                            startPayment(t2pInterface)
+                        },
+                        onFailure = {
+                            Toast.makeText(
+                                requireContext(),
+                                R.string.toast_t2p_interface_creation_failed,
+                                Toast.LENGTH_LONG
+                            ).show()
+                        }
+                    )
             }
         }
     }
