@@ -14,14 +14,14 @@ import com.adyen.ipp.payment.PaymentInterface
 import com.adyen.ipp.payment.PaymentInterfaceType
 import com.adyen.ipp.payment.TransactionRequest
 import com.adyen.sampleapp.databinding.FragmentPaymentBinding
-import java.util.Date
-import java.util.Locale
-import java.util.UUID
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.launch
 import logcat.logcat
+import java.util.Date
+import java.util.Locale
+import java.util.UUID
 
 /**
  * A simple [Fragment] subclass as the default destination in the navigation.
@@ -34,7 +34,7 @@ class PaymentSampleAppFragment : Fragment() {
     private val resultLauncher = InPersonPayments.registerForPaymentResult(this) { paymentResult ->
         val resultText = if (paymentResult.success) "Payment Successful" else "Payment Failed"
         Toast.makeText(requireContext(), resultText, Toast.LENGTH_LONG).show()
-        logcat(tag = logTag) { "Result: \n ${paymentResult.data.decodeFromBase64String()}"}
+        logcat(tag = logTag) { "Result: \n ${paymentResult.data.decodeFromBase64String()}" }
     }
 
     private val job = Job()
@@ -52,14 +52,28 @@ class PaymentSampleAppFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         binding.buttonPayNyc1.setOnClickListener {
             uiScope.launch {
-                val nyc1Interface = InPersonPayments.getPaymentInterface(PaymentInterfaceType.CardReader())
-                startPayment(nyc1Interface.getOrThrow())
+                val nyc1Interface =
+                    InPersonPayments.getPaymentInterface(PaymentInterfaceType.CardReader())
+                nyc1Interface.getOrNull()?.let {
+                    startPayment(it)
+                } ?: Toast.makeText(
+                    requireContext(),
+                    R.string.toast_no_bt_permissions,
+                    Toast.LENGTH_LONG
+                ).show()
             }
         }
         binding.buttonPayT2p.setOnClickListener {
             uiScope.launch {
-                val t2pInterface = InPersonPayments.getPaymentInterface(PaymentInterfaceType.TapToPay)
-                startPayment(t2pInterface.getOrThrow())
+                val t2pInterface =
+                    InPersonPayments.getPaymentInterface(PaymentInterfaceType.TapToPay)
+                t2pInterface.getOrNull()?.let {
+                    startPayment(it)
+                }?: Toast.makeText(
+                    requireContext(),
+                    R.string.toast_t2p_interface_creation_failed,
+                    Toast.LENGTH_LONG
+                ).show()
             }
         }
     }
