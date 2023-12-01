@@ -14,12 +14,12 @@ val localProperties = Properties().apply {
 
 android {
     namespace = "com.adyen.sampleapp"
-    compileSdk = 34
+    compileSdk = 33
 
     defaultConfig {
         applicationId = "com.adyen.sampleapp"
         minSdk = 30
-        targetSdk = 34
+        targetSdk = 33
         versionCode = 1
         versionName = "1.0"
 
@@ -67,9 +67,11 @@ androidComponents {
 
 dependencies {
 
-    val adyenPosMobileVersion = "0.5.0"
+    val adyenPosMobileVersion = "0.4.2"
     debugImplementation("com.adyen.ipp:pos-mobile-debug:$adyenPosMobileVersion")
+    debugImplementation("com.adyen.ipp:card-reader-management-debug:$adyenPosMobileVersion")
     releaseImplementation("com.adyen.ipp:pos-mobile-release:$adyenPosMobileVersion")
+    releaseImplementation("com.adyen.ipp:card-reader-management-release:$adyenPosMobileVersion")
 
     implementation("androidx.core:core-ktx:1.10.1")
     implementation("androidx.appcompat:appcompat:1.6.1")
