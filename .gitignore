@@ -47,6 +47,8 @@ captures/
 .idea/**/dictionaries
 .idea/**/shelf
 .idea/kotlinc.xml
+.idea/gradle.xml
+.idea/misc.xml
 
 # AWS User-specific
 .idea/**/aws.xml
