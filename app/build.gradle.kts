@@ -1,16 +1,19 @@
+import com.android.build.api.variant.BuildConfigField
 import java.io.FileInputStream
 import java.util.Properties
-import com.android.build.api.variant.BuildConfigField
 
 plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
 }
 
-val localPropsFile: String = System.getenv("LOCAL_PROPS") ?: (rootProject.rootDir.absolutePath + "/local.properties")
-val localProperties = Properties().apply {
-    load(FileInputStream(localPropsFile))
-}
+val localPropsFile: String =
+    System.getenv("LOCAL_PROPS")
+        ?: (rootProject.rootDir.absolutePath + "/local.properties")
+val localProperties = Properties()
+    .apply {
+        load(FileInputStream(localPropsFile))
+    }
 
 android {
     namespace = "com.adyen.sampleapp"
@@ -19,7 +22,7 @@ android {
     defaultConfig {
         applicationId = "com.adyen.sampleapp"
         minSdk = 30
-        targetSdk = 33
+        targetSdk = 34
         versionCode = 1
         versionName = "1.0"
 
@@ -29,7 +32,10 @@ android {
     buildTypes {
         getByName("release") {
             isMinifyEnabled = false
-            proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro")
+            proguardFiles(
+                getDefaultProguardFile("proguard-android-optimize.txt"),
+                "proguard-rules.pro"
+            )
             signingConfig = signingConfigs.getByName("debug")
         }
     }
@@ -38,8 +44,10 @@ android {
         sourceCompatibility = JavaVersion.VERSION_1_8
         targetCompatibility = JavaVersion.VERSION_1_8
     }
+
     kotlinOptions {
         jvmTarget = "1.8"
+        apiVersion = "1.8"
     }
 
     buildFeatures {
@@ -56,7 +64,8 @@ androidComponents {
                 "EnvironmentApiKey",
                 BuildConfigField("String", "\"$environmentApiKey\"", "API Key"),
             )
-            val environmentMerchantAccount = localProperties.getProperty("environment.merchantAccount")
+            val environmentMerchantAccount =
+                localProperties.getProperty("environment.merchantAccount")
             buildConfigFields.put(
                 "EnvironmentMerchantAccount",
                 BuildConfigField("String", "\"$environmentMerchantAccount\"", "Merchant Account"),
@@ -65,18 +74,17 @@ androidComponents {
     }
 }
 
+val adyenPosMobileVersion = "0.6.1"
 dependencies {
-
-    val adyenPosMobileVersion = "0.5.0"
     debugImplementation("com.adyen.ipp:pos-mobile-debug:$adyenPosMobileVersion")
     releaseImplementation("com.adyen.ipp:pos-mobile-release:$adyenPosMobileVersion")
 
-    implementation("androidx.core:core-ktx:1.10.1")
+    implementation("androidx.core:core-ktx:1.12.0")
     implementation("androidx.appcompat:appcompat:1.6.1")
-    implementation("com.google.android.material:material:1.9.0")
+    implementation("com.google.android.material:material:1.11.0")
     implementation("androidx.constraintlayout:constraintlayout:2.1.4")
-    implementation("androidx.navigation:navigation-fragment-ktx:2.6.0")
-    implementation("androidx.navigation:navigation-ui-ktx:2.6.0")
+    implementation("androidx.navigation:navigation-fragment-ktx:2.7.6")
+    implementation("androidx.navigation:navigation-ui-ktx:2.7.6")
     implementation("androidx.datastore:datastore-preferences:1.0.0")
     implementation("com.squareup.okhttp3:okhttp:4.9.3")
     implementation("com.squareup.okhttp3:logging-interceptor:4.9.3")
