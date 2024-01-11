@@ -1,13 +1,14 @@
+import com.android.build.api.variant.BuildConfigField
 import java.io.FileInputStream
 import java.util.Properties
-import com.android.build.api.variant.BuildConfigField
 
 plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
 }
 
-val localPropsFile: String = System.getenv("LOCAL_PROPS") ?: (rootProject.rootDir.absolutePath + "/local.properties")
+val localPropsFile: String =
+    System.getenv("LOCAL_PROPS") ?: (rootProject.rootDir.absolutePath + "/local.properties")
 val localProperties = Properties().apply {
     load(FileInputStream(localPropsFile))
 }
@@ -29,7 +30,10 @@ android {
     buildTypes {
         getByName("release") {
             isMinifyEnabled = false
-            proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro")
+            proguardFiles(
+                getDefaultProguardFile("proguard-android-optimize.txt"),
+                "proguard-rules.pro"
+            )
             signingConfig = signingConfigs.getByName("debug")
         }
     }
@@ -56,7 +60,8 @@ androidComponents {
                 "EnvironmentApiKey",
                 BuildConfigField("String", "\"$environmentApiKey\"", "API Key"),
             )
-            val environmentMerchantAccount = localProperties.getProperty("environment.merchantAccount")
+            val environmentMerchantAccount =
+                localProperties.getProperty("environment.merchantAccount")
             buildConfigFields.put(
                 "EnvironmentMerchantAccount",
                 BuildConfigField("String", "\"$environmentMerchantAccount\"", "Merchant Account"),
