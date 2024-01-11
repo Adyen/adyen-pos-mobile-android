@@ -24,4 +24,3 @@ If you have a feature request, or spotted a bug or a technical problem, please c
 
 ## License
 MIT license. For more information, see the LICENSE file.
-   
