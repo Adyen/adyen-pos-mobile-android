@@ -1,3 +1,8 @@
+@file:Suppress("UnstableApiUsage")
+
+import java.io.FileInputStream
+import java.util.Properties
+
 pluginManagement {
     repositories {
         gradlePluginPortal()
@@ -5,10 +10,14 @@ pluginManagement {
     }
 }
 
-val filePath: String = System.getenv("LOCAL_PROPS") ?: (rootProject.projectDir.absolutePath + "/local.properties")
-val localProps = java.util.Properties().apply {
-    load(java.io.FileInputStream(filePath))
-}
+val filePath: String =
+    System.getenv("LOCAL_PROPS")
+        ?: (rootProject.projectDir.absolutePath + "/local.properties")
+
+val localProps = Properties()
+    .apply {
+        load(FileInputStream(filePath))
+    }
 
 dependencyResolutionManagement {
     repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
