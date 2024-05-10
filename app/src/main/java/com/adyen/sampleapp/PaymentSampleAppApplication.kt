@@ -9,6 +9,5 @@ class PaymentSampleAppApplication : Application() {
     override fun onCreate() {
         super.onCreate()
         LogcatLogger.install(AndroidLogcatLogger())
-        InPersonPayments.initialize(application = this)
     }
 }
