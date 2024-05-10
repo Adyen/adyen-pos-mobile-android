@@ -54,6 +54,7 @@ android {
         viewBinding = true
         buildConfig = true
     }
+    dynamicFeatures += setOf(":t2p")
 }
 
 androidComponents {

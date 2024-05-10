@@ -9,4 +9,5 @@
 
     <string name="toast_no_bt_permissions">Check your Bluetooth permissions.</string>
     <string name="toast_t2p_interface_creation_failed">Something went wrong.</string>
+    <string name="title_t2p">Tap To Pay</string>
 </resources>
