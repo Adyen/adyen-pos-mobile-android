@@ -1,8 +1,9 @@
-package com.adyen.sampleapp
+package com.adyen.sampleapp.t2p
 
 import com.adyen.ipp.authentication.AuthenticationProvider
 import com.adyen.ipp.authentication.AuthenticationResponse
 import com.adyen.ipp.authentication.MerchantAuthenticationService
+import com.adyen.sampleapp.BuildConfig
 import java.io.IOException
 import kotlin.coroutines.resume
 import kotlinx.coroutines.suspendCancellableCoroutine
@@ -10,11 +11,11 @@ import okhttp3.Call
 import okhttp3.Callback
 import okhttp3.MediaType.Companion.toMediaType
 import okhttp3.OkHttpClient
-import okhttp3.Request
+import okhttp3.Request.Builder
 import okhttp3.RequestBody.Companion.toRequestBody
 import okhttp3.Response
 import okhttp3.logging.HttpLoggingInterceptor
-import okhttp3.logging.HttpLoggingInterceptor.Level
+import okhttp3.logging.HttpLoggingInterceptor.Level.BODY
 import org.json.JSONObject
 
 class MyAuthenticationService : MerchantAuthenticationService() {
@@ -57,7 +58,7 @@ class MyAuthenticationService : MerchantAuthenticationService() {
                 val mediaType = "application/json".toMediaType()
                 val requestBody = jsonObject.toString().toRequestBody(mediaType)
 
-                val request = Request.Builder()
+                val request = Builder()
                     .url(apiUrl)
                     .addHeader("x-api-key", apiKey)
                     .post(requestBody)
@@ -89,7 +90,7 @@ class MyAuthenticationService : MerchantAuthenticationService() {
 
             private fun createOkHttpClient(): OkHttpClient {
                 val logging = HttpLoggingInterceptor().apply {
-                    setLevel(Level.BODY)
+                    setLevel(BODY)
                 }
                 return OkHttpClient.Builder().apply {
                     addInterceptor(logging)

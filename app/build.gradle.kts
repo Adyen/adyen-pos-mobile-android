@@ -40,14 +40,18 @@ android {
         }
     }
 
+//    compileOptions {
+//        sourceCompatibility = JavaVersion.VERSION_1_8
+//        targetCompatibility = JavaVersion.VERSION_1_8
+//    }
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_1_8
-        targetCompatibility = JavaVersion.VERSION_1_8
+        sourceCompatibility = JavaVersion.VERSION_17
+        targetCompatibility = JavaVersion.VERSION_17
     }
-
+//
     kotlinOptions {
-        jvmTarget = "1.8"
-        apiVersion = "1.8"
+        jvmTarget = "17"
+//        apiVersion = "1.8"
     }
 
     buildFeatures {
@@ -75,21 +79,21 @@ androidComponents {
     }
 }
 
-val adyenPosMobileVersion = "0.9.0"
 dependencies {
-    debugImplementation("com.adyen.ipp:pos-mobile-debug:$adyenPosMobileVersion")
-    releaseImplementation("com.adyen.ipp:pos-mobile-release:$adyenPosMobileVersion")
 
-    implementation("androidx.core:core-ktx:1.12.0")
-    implementation("androidx.appcompat:appcompat:1.6.1")
-    implementation("com.google.android.material:material:1.11.0")
-    implementation("androidx.constraintlayout:constraintlayout:2.1.4")
-    implementation("androidx.navigation:navigation-fragment-ktx:2.7.7")
-    implementation("androidx.navigation:navigation-ui-ktx:2.7.7")
-    implementation("androidx.datastore:datastore-preferences:1.0.0")
-    implementation("com.squareup.okhttp3:okhttp:4.12.0")
-    implementation("com.squareup.okhttp3:logging-interceptor:4.12.0")
-    implementation("com.squareup.logcat:logcat:0.1")
+    api("com.google.android.play:feature-delivery:2.1.0")
+    implementation("com.google.android.play:feature-delivery-ktx:2.1.0")
+
+    api("androidx.core:core-ktx:1.12.0")
+    api("androidx.appcompat:appcompat:1.6.1")
+    api("com.google.android.material:material:1.11.0")
+    api("androidx.constraintlayout:constraintlayout:2.1.4")
+    api("androidx.navigation:navigation-fragment-ktx:2.7.7")
+    api("androidx.navigation:navigation-ui-ktx:2.7.7")
+    api("androidx.datastore:datastore-preferences:1.0.0")
+    api("com.squareup.okhttp3:okhttp:4.12.0")
+    api("com.squareup.okhttp3:logging-interceptor:4.12.0")
+    api("com.squareup.logcat:logcat:0.1")
 
     testImplementation("junit:junit:4.13.2")
     androidTestImplementation("androidx.test.ext:junit:1.1.5")
