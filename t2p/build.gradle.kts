@@ -35,16 +35,19 @@ android {
 
 val adyenPosMobileVersion = "0.9.0"
 dependencies {
-    implementation(project(":app"))
-    implementation("androidx.appcompat:appcompat:1.6.1")
-    implementation("com.google.android.material:material:1.12.0")
-    implementation("androidx.activity:activity:1.9.0")
-    implementation("androidx.constraintlayout:constraintlayout:2.1.4")
 
     debugImplementation("com.adyen.ipp:pos-mobile-debug:$adyenPosMobileVersion")
     releaseImplementation("com.adyen.ipp:pos-mobile-release:$adyenPosMobileVersion")
 
+    implementation(project(":app"))
+    implementation("androidx.startup:startup-runtime:1.1.1")
 
+
+    implementation("androidx.appcompat:appcompat:1.6.1")
+    implementation("com.google.android.material:material:1.12.0")
+    implementation("androidx.activity:activity:1.9.0")
+    implementation("androidx.constraintlayout:constraintlayout:2.1.4")
+    
     implementation("androidx.core:core-ktx:1.13.1")
     testImplementation("junit:junit:4.13.2")
     androidTestImplementation("androidx.test.ext:junit:1.1.5")
