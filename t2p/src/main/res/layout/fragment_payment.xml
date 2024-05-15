@@ -34,14 +34,4 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/button_pay_nyc1" />
-
-    <Button
-        android:id="@+id/button_Init"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="INITIALIZE"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/button_pay_t2p"
-        tools:ignore="HardcodedText" />
 </androidx.constraintlayout.widget.ConstraintLayout>

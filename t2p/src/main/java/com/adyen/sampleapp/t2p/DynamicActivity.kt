@@ -5,6 +5,8 @@ import android.os.Bundle
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.ui.AppBarConfiguration
+import androidx.startup.AppInitializer
+import com.adyen.ipp.InPersonPaymentsInitializer
 import com.adyen.sampleapp.t2p.databinding.ActivityDynamicBinding
 import com.google.android.play.core.splitcompat.SplitCompat
 import com.google.android.play.core.splitinstall.SplitInstallHelper
@@ -29,11 +31,9 @@ class DynamicActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         Log.e("DynamicActivity", "onCreate")
 
-        Log.e("DynamicActivity", "setContentView")
         binding = ActivityDynamicBinding.inflate(layoutInflater)
         setContentView(binding.root)
-//        Log.e("DynamicActivity", "setContentView")
-//        setContentView(R.layout.activity_dynamic)
+
         initializeSDK()
 
 //        val navController = findNavController(R.id.nav_host_fragment_content_main)
@@ -46,6 +46,8 @@ class DynamicActivity : AppCompatActivity() {
     private fun initializeSDK() {
         Log.e("DynamicActivity", "initializeSDK")
         loadNatives()
+        AppInitializer.getInstance(this)
+            .initializeComponent(InPersonPaymentsInitializer::class.java)
     }
 
     private fun loadNatives() {
