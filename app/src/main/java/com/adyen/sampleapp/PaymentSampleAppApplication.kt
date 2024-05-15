@@ -5,6 +5,7 @@ import android.content.Context
 import android.content.pm.PackageManager
 import android.util.Log
 import com.google.android.play.core.splitcompat.SplitCompat
+import com.google.android.play.core.splitinstall.SplitInstallHelper
 import logcat.AndroidLogcatLogger
 import logcat.LogcatLogger
 
@@ -19,14 +20,21 @@ class PaymentSampleAppApplication : Application() {
     override fun onCreate() {
         super.onCreate()
         LogcatLogger.install(AndroidLogcatLogger())
+        loadZDefend()
         checkService()
+    }
+
+    private fun loadZDefend() {
+        Log.e("TEST", "loading zDefend native")
+        SplitInstallHelper.loadLibrary(this, "ZDefend");
     }
 
     private fun checkService() {
         packageManager
             .getPackageInfo(packageName, PackageManager.GET_SERVICES)
             .services.forEach {
-                Log.e("TEST", "Service: ${it.name}")
+
+                Log.e("TEST", "Service: ${it.name} - ${it.splitName}: $it")
             }
     }
 }

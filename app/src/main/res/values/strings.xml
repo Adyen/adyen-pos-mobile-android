@@ -13,5 +13,5 @@
 
 
     <!--SDK OVERRIDE -->
-    <string name="permission_activity_name">NYC1 USB Controller</string>
+    <string name="ippm_permission_activity_name">NYC1 USB Controller</string>
 </resources>

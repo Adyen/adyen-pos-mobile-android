@@ -1,4 +1,5 @@
 import com.android.build.api.variant.BuildConfigField
+import com.android.builder.merge.StreamMergeAlgorithms.pickFirst
 import java.io.FileInputStream
 import java.util.Properties
 
@@ -27,6 +28,10 @@ android {
         versionName = "1.0"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+
+        ndk {
+            abiFilters.addAll(setOf("armeabi-v7a", "arm64_v8a"))
+        }
     }
 
     buildTypes {
@@ -58,6 +63,9 @@ android {
         viewBinding = true
         buildConfig = true
     }
+
+
+    packagingOptions.resources.pickFirsts.add("META-INF/kotlinx_coroutines_core.version")
     dynamicFeatures += setOf(":t2p")
 }
 
@@ -81,8 +89,15 @@ androidComponents {
 
 dependencies {
 
+    api("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.7.1")
+
     api("com.google.android.play:feature-delivery:2.1.0")
     implementation("com.google.android.play:feature-delivery-ktx:2.1.0")
+
+    api("androidx.collection:collection-ktx:1.4.0")
+
+
+    api("com.adyen.ipp.tools:detection-baseline-group-dev:5.2.27_04.13.24")
 
     api("androidx.core:core-ktx:1.12.0")
     api("androidx.appcompat:appcompat:1.6.1")

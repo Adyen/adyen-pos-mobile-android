@@ -5,62 +5,76 @@ import android.os.Bundle
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import com.adyen.sampleapp.databinding.ActivityMainBinding
+import com.google.android.play.core.splitinstall.SplitInstallManager
 import com.google.android.play.core.splitinstall.SplitInstallManagerFactory
 import com.google.android.play.core.splitinstall.SplitInstallRequest
+import com.google.android.play.core.splitinstall.SplitInstallStateUpdatedListener
+import com.google.android.play.core.splitinstall.model.SplitInstallSessionStatus
 
 class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
+
+    private lateinit var splitInstallManager: SplitInstallManager
+    private val listener = SplitInstallStateUpdatedListener { state ->
+        Log.e("MainActivity", "onInstalled: ${state.sessionId()} - ${state.status()} - ${state.moduleNames()}")
+        if (state.status() == SplitInstallSessionStatus.INSTALLED) {
+            startSdk()
+        }
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
         loadModule()
     }
 
     private fun loadModule() {
-        Log.d("TEST", "loadModule")
-        // Creates an instance of SplitInstallManager.
-        val splitInstallManager = SplitInstallManagerFactory.create(this)
+        Log.d("MainActivity", "loadModule")
+        splitInstallManager = SplitInstallManagerFactory.create(this)
+        splitInstallManager.registerListener(listener)
 
-        // Creates a request to install a module.
-        val request =
-            SplitInstallRequest.newBuilder()
-                // You can download multiple on demand modules per
-                // request by invoking the following method for each
-                // module you want to install.
+        val request = SplitInstallRequest.newBuilder()
                 .addModule("t2p")
                 .build()
 
         splitInstallManager
-            // Submits the request to install the module through the
-            // asynchronous startInstall() task. Your app needs to be
-            // in the foreground to submit the request.
             .startInstall(request)
-            // You should also be able to gracefully handle
-            // request state changes and errors. To learn more, go to
-            // the section about how to Monitor the request state.
             .addOnSuccessListener { sessionId ->
-                Log.d("TEST", "onSuccess: $sessionId")
-                startSdk()
+                Log.d("MainActivity", "onSuccess: $sessionId")
+                val installedModules: Set<String> = splitInstallManager.installedModules
+                Log.e("MainActivity", "Installed Modules: $installedModules")
+                if (installedModules.contains("t2p")) {
+//                    startSdk()
+                } else {
+                    Log.e("MainActivity", "T2P NOT INSTALLED: $sessionId")
+                }
+                Log.d("MainActivity", "addOnSuccessListener finished")
             }
             .addOnFailureListener { exception ->
-                Log.e("TEST", "Install failed with: ${exception.message}", exception)
+                Log.e("MainActivity", "Install failed with: ${exception.message}", exception)
             }
 
     }
 
     private fun startSdk() {
-        Log.d("TEST", "startSdk")
+        Log.d("MainActivity", "startSdk")
+        unregister()
         startActivity(
             Intent().setClassName(
                 "com.adyen.sampleapp",
                 "com.adyen.sampleapp.t2p.DynamicActivity"
             )
         )
+        finish()
+        Log.d("MainActivity", "startActivity called")
+    }
 
-
+    private fun unregister() {
+        val splitInstallManager = SplitInstallManagerFactory.create(this)
+        splitInstallManager.unregisterListener(listener)
     }
 }

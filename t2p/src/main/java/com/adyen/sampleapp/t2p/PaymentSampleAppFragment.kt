@@ -1,14 +1,18 @@
 package com.adyen.sampleapp.t2p
 
+import android.content.Context
 import android.icu.text.SimpleDateFormat
 import android.icu.util.TimeZone
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
+import androidx.startup.AppInitializer
 import com.adyen.ipp.InPersonPayments
+import com.adyen.ipp.InPersonPaymentsInitializer
 import com.adyen.ipp.payment.PaymentInterface
 import com.adyen.ipp.payment.PaymentInterfaceType.CardReader
 import com.adyen.ipp.payment.PaymentInterfaceType.TapToPay
@@ -59,12 +63,17 @@ class PaymentSampleAppFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
+        Log.e("PaymentSampleAppFragment", "onCreateView")
         binding = FragmentPaymentBinding.inflate(inflater, container, false)
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        binding.buttonInit.setOnClickListener {
+            val ipp = AppInitializer.getInstance((activity as Context).applicationContext)
+                .initializeComponent(InPersonPaymentsInitializer::class.java)
+        }
         binding.buttonPayNyc1.setOnClickListener {
             uiScope.launch {
                 InPersonPayments.getPaymentInterface(CardReader())

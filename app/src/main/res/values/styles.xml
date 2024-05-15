@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <!--SDK OVERRIDE -->
-    <style name="Theme.CardReaderScreen" parent="Theme.AppCompat.DayNight" />
+    <style name="ippm_Theme.CardReaderScreen" parent="Theme.AppCompat.DayNight" />
 
-    <style name="Theme.DeviceManagerScreen" parent="Theme.AppCompat.DayNight.NoActionBar" />
+    <style name="ippm_Theme.DeviceManagerScreen" parent="Theme.AppCompat.DayNight.NoActionBar" />
 
-    <style name="Theme.Transparent" parent="Theme.AppCompat.Dialog">
+    <style name="ippm_Theme.Transparent" parent="Theme.AppCompat.Dialog">
         <item name="android:windowIsTranslucent">true</item>
         <item name="android:windowBackground">@android:color/transparent</item>
         <item name="android:windowContentOverlay">@null</item>
@@ -14,6 +14,6 @@
         <item name="android:backgroundDimEnabled">false</item>
     </style>
 
-    <style name="PaymentTheme" parent="@style/Theme.AppCompat.DayNight" />
-    <style name="RefundTheme" parent="@style/Theme.Transparent" />
+    <style name="ippm_PaymentTheme" parent="@style/Theme.AppCompat.DayNight" />
+    <style name="ippm_RefundTheme" parent="@style/ippm_Theme.Transparent" />
 </resources>
