@@ -2,7 +2,7 @@ package com.adyen.sampleapp
 
 import com.adyen.ipp.authentication.AuthenticationProvider
 import com.adyen.ipp.authentication.AuthenticationResponse
-import com.adyen.ipp.authentication.AuthenticationService
+import com.adyen.ipp.authentication.MerchantAuthenticationService
 import java.io.IOException
 import kotlin.coroutines.resume
 import kotlinx.coroutines.suspendCancellableCoroutine
@@ -17,7 +17,7 @@ import okhttp3.logging.HttpLoggingInterceptor
 import okhttp3.logging.HttpLoggingInterceptor.Level
 import org.json.JSONObject
 
-class MyAuthenticationService : AuthenticationService() {
+class MyAuthenticationService : MerchantAuthenticationService() {
 
     /**
      *  ------------

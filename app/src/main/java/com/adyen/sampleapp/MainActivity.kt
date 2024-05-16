@@ -7,7 +7,10 @@ import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.navigateUp
 import com.adyen.ipp.cardreader.bluetooth.ui.DeviceManagementActivity
 import com.adyen.sampleapp.databinding.ActivityMainBinding
+import kotlinx.coroutines.ExperimentalCoroutinesApi
+import kotlinx.coroutines.FlowPreview
 
+@OptIn(FlowPreview::class, ExperimentalCoroutinesApi::class)
 class MainActivity : AppCompatActivity() {
 
     private lateinit var appBarConfiguration: AppBarConfiguration
