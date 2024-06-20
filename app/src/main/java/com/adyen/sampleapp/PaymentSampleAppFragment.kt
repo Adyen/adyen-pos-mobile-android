@@ -9,32 +9,46 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import com.adyen.ipp.InPersonPayments
-import com.adyen.ipp.core.ext.decodeFromBase64String
 import com.adyen.ipp.payment.PaymentInterface
 import com.adyen.ipp.payment.PaymentInterfaceType
 import com.adyen.ipp.payment.TransactionRequest
+import com.adyen.ipp.payment.ui.model.MerchantUiParameters
 import com.adyen.sampleapp.databinding.FragmentPaymentBinding
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.launch
 import logcat.logcat
+import java.util.Base64
 import java.util.Date
 import java.util.Locale
 import java.util.UUID
+import kotlinx.coroutines.ExperimentalCoroutinesApi
+import kotlinx.coroutines.FlowPreview
 
 /**
  * A simple [Fragment] subclass as the default destination in the navigation.
  */
+@OptIn(ExperimentalCoroutinesApi::class, FlowPreview::class)
 class PaymentSampleAppFragment : Fragment() {
 
     private val logTag = "Transaction"
 
     private lateinit var binding: FragmentPaymentBinding
-    private val resultLauncher = InPersonPayments.registerForPaymentResult(this) { paymentResult ->
-        val resultText = if (paymentResult.success) "Payment Successful" else "Payment Failed"
+
+    private val resultLauncher = InPersonPayments.registerForPaymentResult(this) { result ->
+        val resultText = result.fold(
+            onSuccess = { paymentResult ->
+                val decodedResult = String(Base64.getDecoder().decode(paymentResult.data))
+                logcat(tag = logTag) { "Result: \n $decodedResult" }
+                if (paymentResult.success) "Payment Successful" else "Payment Failed"
+            },
+            onFailure = { error ->
+                logcat(tag = logTag) { "Result failed with: ${error.message}" }
+                "Payment Failed"
+            },
+        )
         Toast.makeText(requireContext(), resultText, Toast.LENGTH_LONG).show()
-        logcat(tag = logTag) { "Result: \n ${paymentResult.data.decodeFromBase64String()}" }
     }
 
     private val job = Job()
@@ -86,11 +100,12 @@ class PaymentSampleAppFragment : Fragment() {
         }
     }
 
+
     private suspend fun startPayment(paymentInterface: PaymentInterface<*>) {
         val nexoRequest: String = generateNexoRequest(
             requestedAmount = "5",
             currency = "USD",
-            poiId = InPersonPayments.getInstallationId()
+            poiId = InPersonPayments.getInstallationId().getOrNull() ?: "UNKNOWN"
         )
         logcat(logTag) { "NexoRequest:\n$nexoRequest" }
 
@@ -99,7 +114,7 @@ class PaymentSampleAppFragment : Fragment() {
             paymentInterface = paymentInterface,
             transactionRequest = TransactionRequest.create(nexoRequest).getOrThrow(),
             paymentLauncher = resultLauncher,
-            authenticationServiceClass = MyAuthenticationService::class.java,
+            merchantUiParameters = MerchantUiParameters.create()
         )
     }
 
