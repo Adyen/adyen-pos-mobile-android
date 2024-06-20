@@ -24,6 +24,7 @@ dependencyResolutionManagement {
     repositories {
         // Add your repository configuration here.
         google()
+        mavenLocal()
         mavenCentral()
         maven {
             url = uri(localProps.getProperty("artifacts.url") ?: "ARTIFACTS URL NOT FOUND")
