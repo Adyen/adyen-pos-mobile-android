@@ -93,6 +93,7 @@ dependencies {
 
     api("com.google.android.play:feature-delivery:2.1.0")
     implementation("com.google.android.play:feature-delivery-ktx:2.1.0")
+    implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.8.4")
 
     api("androidx.collection:collection-ktx:1.4.0")
 

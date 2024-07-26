@@ -112,7 +112,7 @@ class PaymentSampleAppFragment : Fragment() {
             paymentInterface = paymentInterface,
             transactionRequest = TransactionRequest.create(nexoRequest).getOrThrow(),
             paymentLauncher = resultLauncher,
-            merchantUiParameters = MerchantUiParameters()
+            merchantUiParameters = MerchantUiParameters.create()
         )
     }
 
