@@ -33,7 +33,7 @@ android {
     }
 }
 
-val adyenPosMobileVersion = "1.0.0"
+val adyenPosMobileVersion = "0.9.1"
 dependencies {
 
     debugImplementation("com.adyen.ipp:pos-mobile-debug:$adyenPosMobileVersion")

@@ -20,5 +20,21 @@ class PaymentSampleAppApplication : Application() {
     override fun onCreate() {
         super.onCreate()
         LogcatLogger.install(AndroidLogcatLogger())
+        loadZDefend()
+        checkService()
+    }
+
+    private fun loadZDefend() {
+        Log.e("TEST", "loading zDefend native")
+        SplitInstallHelper.loadLibrary(this, "ZDefend");
+    }
+
+    private fun checkService() {
+        packageManager
+            .getPackageInfo(packageName, PackageManager.GET_SERVICES)
+            .services.forEach {
+
+                Log.e("TEST", "Service: ${it.name} - ${it.splitName}: $it")
+            }
     }
 }
