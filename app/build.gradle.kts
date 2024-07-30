@@ -1,5 +1,4 @@
 import com.android.build.api.variant.BuildConfigField
-import com.android.builder.merge.StreamMergeAlgorithms.pickFirst
 import java.io.FileInputStream
 import java.util.Properties
 
@@ -30,7 +29,7 @@ android {
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
 
         ndk {
-            abiFilters.addAll(setOf("armeabi-v7a", "arm64_v8a"))
+            abiFilters.addAll(setOf("armeabi-v7a", "arm64-v8a"))
         }
     }
 
@@ -93,6 +92,7 @@ dependencies {
 
     api("com.google.android.play:feature-delivery:2.1.0")
     implementation("com.google.android.play:feature-delivery-ktx:2.1.0")
+    implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.8.4")
 
     api("androidx.collection:collection-ktx:1.4.0")
 

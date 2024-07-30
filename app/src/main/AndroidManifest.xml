@@ -37,8 +37,9 @@
             <meta-data android:name="com.adyen.ipp.InPersonPaymentsInitializer"
                 tools:node="remove" />
         </provider>
-
-
+        <meta-data
+            android:name="splitMode"
+            android:value="true" />
 
     </application>
 
