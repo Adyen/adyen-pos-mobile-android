@@ -38,7 +38,7 @@
                 tools:node="remove" />
         </provider>
         <meta-data
-            android:name="splitMode"
+            android:name="dynamicMode"
             android:value="true" />
 
     </application>
