@@ -96,9 +96,6 @@ dependencies {
 
     api("androidx.collection:collection-ktx:1.4.0")
 
-
-    api("com.adyen.ipp.tools:detection-baseline-group-dev:5.2.27_04.13.24")
-
     api("androidx.core:core-ktx:1.12.0")
     api("androidx.appcompat:appcompat:1.6.1")
     api("com.google.android.material:material:1.11.0")
