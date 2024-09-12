@@ -1,4 +1,4 @@
-package com.adyen.sampleapp
+package com.adyen.sampletestuploadapp
 
 import android.app.Application
 import android.content.Context

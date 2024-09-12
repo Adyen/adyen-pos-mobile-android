@@ -1,4 +1,4 @@
-package com.adyen.sampleapp.t2p
+package com.adyen.sampletestuploadapp.t2p
 
 import org.junit.Test
 

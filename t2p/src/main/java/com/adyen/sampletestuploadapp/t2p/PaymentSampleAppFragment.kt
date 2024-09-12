@@ -1,4 +1,4 @@
-package com.adyen.sampleapp.t2p
+package com.adyen.sampletestuploadapp.t2p
 
 import android.icu.text.SimpleDateFormat
 import android.icu.util.TimeZone
@@ -15,8 +15,8 @@ import com.adyen.ipp.payment.PaymentInterfaceType.CardReader
 import com.adyen.ipp.payment.PaymentInterfaceType.TapToPay
 import com.adyen.ipp.payment.TransactionRequest
 import com.adyen.ipp.payment.ui.model.MerchantUiParameters
-import com.adyen.sampleapp.R
-import com.adyen.sampleapp.t2p.databinding.FragmentPaymentBinding
+import com.adyen.sampletestuploadapp.R
+import com.adyen.sampletestuploadapp.t2p.databinding.FragmentPaymentBinding
 import java.util.Base64
 import java.util.Date
 import java.util.Locale
@@ -72,7 +72,7 @@ class PaymentSampleAppFragment : Fragment() {
                 InPersonPayments.getPaymentInterface(CardReader())
                     .fold(
                         onSuccess = { nyc1Interface ->
-                            startPayment(nyc1Interface)
+                            startPayment(nyc1Interface, "5")
                         },
                         onFailure = {
                             Toast.makeText(
@@ -87,7 +87,23 @@ class PaymentSampleAppFragment : Fragment() {
                 InPersonPayments.getPaymentInterface(TapToPay)
                     .fold(
                         onSuccess = { t2pInterface ->
-                            startPayment(t2pInterface)
+                            startPayment(t2pInterface, "0.15")
+                        },
+                        onFailure = {
+                            Toast.makeText(
+                                requireContext(), R.string.toast_t2p_interface_creation_failed, Toast.LENGTH_LONG
+                            ).show()
+                        }
+                    )
+            }
+        }
+
+        binding.buttonPayT2p2.setOnClickListener {
+            uiScope.launch {
+                InPersonPayments.getPaymentInterface(TapToPay)
+                    .fold(
+                        onSuccess = { t2pInterface ->
+                            startPayment(t2pInterface, "51")
                         },
                         onFailure = {
                             Toast.makeText(
@@ -99,10 +115,10 @@ class PaymentSampleAppFragment : Fragment() {
         }
     }
 
-    private suspend fun startPayment(paymentInterface: PaymentInterface<*>) {
+    private suspend fun startPayment(paymentInterface: PaymentInterface<*>, requestedAmount: String) {
         val nexoRequest: String = generateNexoRequest(
-            requestedAmount = "5",
-            currency = "USD",
+            requestedAmount = requestedAmount,
+            currency = "EUR",
             poiId = InPersonPayments.getInstallationId().getOrNull() ?: "UNKNOWN"
         )
         logcat(logTag) { "NexoRequest:\n$nexoRequest" }

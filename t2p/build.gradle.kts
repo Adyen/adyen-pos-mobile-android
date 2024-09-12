@@ -3,7 +3,7 @@ plugins {
     id("org.jetbrains.kotlin.android")
 }
 android {
-    namespace = "com.adyen.sampleapp.t2p"
+    namespace = "com.adyen.sampletestuploadapp.t2p"
     compileSdk = 34
 
     defaultConfig {
@@ -14,8 +14,22 @@ android {
     buildTypes {
         release {
             isMinifyEnabled = false
-            proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro")
         }
+    }
+
+    signingConfigs {
+        create("dummy") {
+            storeFile = file("../myreleasekey.keystoreDUMMY")
+            storePassword = "password"
+            keyAlias = "key0"
+            keyPassword = "password"
+        }
+    }
+
+    buildTypes.getByName("release") {
+        isMinifyEnabled = false
+        isDebuggable = false
+        signingConfig = signingConfigs.getByName("dummy")
     }
 
     buildFeatures {
@@ -33,7 +47,7 @@ android {
     }
 }
 
-val adyenPosMobileVersion = "1.1.1"
+val adyenPosMobileVersion = "1.1.2"
 dependencies {
 
     debugImplementation("com.adyen.ipp:pos-mobile-debug:$adyenPosMobileVersion")
@@ -47,7 +61,7 @@ dependencies {
     implementation("com.google.android.material:material:1.12.0")
     implementation("androidx.activity:activity:1.9.0")
     implementation("androidx.constraintlayout:constraintlayout:2.1.4")
-    
+
     implementation("androidx.core:core-ktx:1.13.1")
     testImplementation("junit:junit:4.13.2")
     androidTestImplementation("androidx.test.ext:junit:1.1.5")

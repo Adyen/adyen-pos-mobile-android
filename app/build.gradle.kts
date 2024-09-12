@@ -16,15 +16,15 @@ val localProperties = Properties()
     }
 
 android {
-    namespace = "com.adyen.sampleapp"
+    namespace = "com.adyen.sampletestuploadapp"
     compileSdk = 34
 
     defaultConfig {
-        applicationId = "com.adyen.sampleapp"
+        applicationId = "com.adyen.sampletestuploadapp"
         minSdk = 30
         targetSdk = 34
-        versionCode = 1
-        versionName = "1.0"
+        versionCode = 10
+        versionName = "1.2.7"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
 
@@ -33,14 +33,24 @@ android {
         }
     }
 
+    signingConfigs {
+        create("dummy") {
+            storeFile = file("../myreleasekey.keystoreDUMMY")
+            storePassword = "password"
+            keyAlias = "key0"
+            keyPassword = "password"
+        }
+    }
+
     buildTypes {
         getByName("release") {
-            isMinifyEnabled = true
+            isMinifyEnabled = false
+            isDebuggable = false
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"
             )
-            signingConfig = signingConfigs.getByName("debug")
+            signingConfig = signingConfigs.getByName("dummy")
         }
     }
 

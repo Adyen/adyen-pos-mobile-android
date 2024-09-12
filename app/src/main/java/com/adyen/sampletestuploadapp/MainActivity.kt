@@ -1,10 +1,10 @@
-package com.adyen.sampleapp
+package com.adyen.sampletestuploadapp
 
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
-import com.adyen.sampleapp.databinding.ActivityMainBinding
+import com.adyen.sampletestuploadapp.databinding.ActivityMainBinding
 import com.google.android.play.core.splitinstall.SplitInstallManager
 import com.google.android.play.core.splitinstall.SplitInstallManagerFactory
 import com.google.android.play.core.splitinstall.SplitInstallRequest
@@ -65,8 +65,8 @@ class MainActivity : AppCompatActivity() {
         unregister()
         startActivity(
             Intent().setClassName(
-                "com.adyen.sampleapp",
-                "com.adyen.sampleapp.t2p.DynamicActivity"
+                "com.adyen.sampletestuploadapp",
+                "com.adyen.sampletestuploadapp.t2p.DynamicActivity"
             )
         )
         finish()

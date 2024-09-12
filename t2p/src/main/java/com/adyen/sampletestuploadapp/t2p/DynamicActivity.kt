@@ -1,4 +1,4 @@
-package com.adyen.sampleapp.t2p
+package com.adyen.sampletestuploadapp.t2p
 
 import android.content.Context
 import android.os.Bundle
@@ -6,7 +6,7 @@ import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import androidx.startup.AppInitializer
 import com.adyen.ipp.InPersonPaymentsInitializer
-import com.adyen.sampleapp.t2p.databinding.ActivityDynamicBinding
+import com.adyen.sampletestuploadapp.t2p.databinding.ActivityDynamicBinding
 import com.google.android.play.core.splitcompat.SplitCompat
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.FlowPreview

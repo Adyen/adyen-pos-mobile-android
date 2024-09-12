@@ -7,6 +7,6 @@
 
     <fragment
         android:id="@+id/FirstFragment"
-        android:name="com.adyen.sampleapp.t2p.PaymentSampleAppFragment"
+        android:name="com.adyen.sampletestuploadapp.t2p.PaymentSampleAppFragment"
         tools:layout="@layout/fragment_payment" />
 </navigation>

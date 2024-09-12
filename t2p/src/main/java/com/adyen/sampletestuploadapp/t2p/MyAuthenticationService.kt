@@ -1,9 +1,9 @@
-package com.adyen.sampleapp.t2p
+package com.adyen.sampletestuploadapp.t2p
 
 import com.adyen.ipp.authentication.AuthenticationProvider
 import com.adyen.ipp.authentication.AuthenticationResponse
 import com.adyen.ipp.authentication.MerchantAuthenticationService
-import com.adyen.sampleapp.BuildConfig
+import com.adyen.sampletestuploadapp.BuildConfig
 import java.io.IOException
 import kotlin.coroutines.resume
 import kotlinx.coroutines.suspendCancellableCoroutine
@@ -43,7 +43,8 @@ class MyAuthenticationService : MerchantAuthenticationService() {
     val merchantAccount = BuildConfig.EnvironmentMerchantAccount
 
     // This app is intended to be used only against the TEST environment.
-    val apiUrl = "https://checkout-test.adyen.com/checkout/possdk/v68/sessions"
+//    val apiUrl = "https://checkout-test.adyen.com/checkout/possdk/v68/sessions"
+    val apiUrl = "https://4405e347d2bae679-PaymentsMadeEasy-checkout-live.adyenpayments.com/"
 
     // You can also declare this implementation somewhere else and pass it using your Dependency Injection system.
     override val authenticationProvider: AuthenticationProvider
@@ -54,6 +55,7 @@ class MyAuthenticationService : MerchantAuthenticationService() {
                 val jsonObject = JSONObject().apply {
                     put("merchantAccount", merchantAccount)
                     put("setupToken", setupToken)
+                    put("store", "IPPMOB")
                 }
                 val mediaType = "application/json".toMediaType()
                 val requestBody = jsonObject.toString().toRequestBody(mediaType)

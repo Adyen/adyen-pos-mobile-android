@@ -2,7 +2,8 @@
     <string name="app_name">Sample Payment App</string>
     <!-- Strings used for fragments for navigation -->
     <string name="button_pay_nyc1">Pay with Card Reader</string>
-    <string name="button_pay_t2p">Pay with Tap to Pay</string>
+    <string name="button_pay_t2p">Pay with Tap to Pay 0.15 EUR</string>
+    <string name="button_pay_t2p_2">Pay with Tap to Pay 51.00 EUR</string>
 
     <string name="first_fragment_connect_to_device">Connect to the device first.</string>
     <string name="first_fragment_default_payment">Default payment is €5</string>
