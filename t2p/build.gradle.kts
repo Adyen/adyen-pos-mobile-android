@@ -47,11 +47,11 @@ android {
     }
 }
 
-val adyenPosMobileVersion = "1.1.2"
+val adyenPosMobileVersion = "1.1.3"
 dependencies {
 
     debugImplementation("com.adyen.ipp:pos-mobile-debug:$adyenPosMobileVersion")
-    releaseImplementation("com.adyen.ipp:pos-mobile-release:$adyenPosMobileVersion")
+    releaseImplementation("com.adyen.ipp:pos-mobile-public:$adyenPosMobileVersion")
 
     implementation(project(":app"))
     implementation("androidx.startup:startup-runtime:1.1.1")

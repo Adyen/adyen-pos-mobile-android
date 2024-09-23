@@ -23,8 +23,8 @@ android {
         applicationId = "com.adyen.sampletestuploadapp"
         minSdk = 30
         targetSdk = 34
-        versionCode = 10
-        versionName = "1.2.7"
+        versionCode = 14
+        versionName = "1.2.11"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
 
@@ -44,7 +44,8 @@ android {
 
     buildTypes {
         getByName("release") {
-            isMinifyEnabled = false
+            isMinifyEnabled = true
+            isShrinkResources = true
             isDebuggable = false
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"),
