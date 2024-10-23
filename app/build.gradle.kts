@@ -75,7 +75,7 @@ androidComponents {
     }
 }
 
-val adyenPosMobileVersion = "1.2.0"
+val adyenPosMobileVersion = "1.3.0"
 dependencies {
     debugImplementation("com.adyen.ipp:pos-mobile-debug:$adyenPosMobileVersion")
     releaseImplementation("com.adyen.ipp:pos-mobile-release:$adyenPosMobileVersion")
