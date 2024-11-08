@@ -1,9 +1,16 @@
 # Adyen POS Mobile SDK for Android
 
+## Introduction
+
 This is the home page of the Adyen POS Mobile SDK for Android. 
 Our mobile solution lets you accept in-person payments on an Android device, using a card reader that is connected via Bluetooth.
 
-The repository contains a small sample app which can be used to get started with using our SDK.
+The repository contains the following sample applications: 
+
+1. `app-default` is an example of automatic initialization of the SDK. This is the default and most common case.
+2. `app-manual-initialization` is a more advanced example of manual initialization of the SDK. 
+
+## Artifactory Setup
 
 To build the project you need to define some variables in your `local.properties` file locally.
 ```
