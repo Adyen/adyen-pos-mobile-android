@@ -7,8 +7,11 @@ Our mobile solution lets you accept in-person payments on an Android device, usi
 
 The repository contains the following sample applications: 
 
-1. `app-default` is an example of automatic initialization of the SDK. This is the default and most common case.
+1. `app-default` is an example of automatic initialization of the SDK. 
+ See [README.md](app-default/README.md).
+
 2. `app-manual-initialization` is a more advanced example of manual initialization of the SDK. 
+ See [README.md](app-manual-initialization/README.md)
 
 ## Artifactory Setup
 
