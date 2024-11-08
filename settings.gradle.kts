@@ -35,4 +35,4 @@ dependencyResolutionManagement {
     }
 }
 rootProject.name = "Sample App"
-include(":app")
+include(":app-default", ":app-manual-initialization")
