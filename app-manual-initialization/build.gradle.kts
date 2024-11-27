@@ -75,23 +75,24 @@ androidComponents {
     }
 }
 
-val adyenPosMobileVersion = "1.3.0"
 dependencies {
-    debugImplementation("com.adyen.ipp:pos-mobile-debug:$adyenPosMobileVersion")
-    releaseImplementation("com.adyen.ipp:pos-mobile-release:$adyenPosMobileVersion")
+    debugImplementation(libs.pos.mobile.debug)
+    releaseImplementation(libs.pos.mobile.release)
 
-    implementation("androidx.core:core-ktx:1.13.1")
-    implementation("androidx.appcompat:appcompat:1.7.0")
-    implementation("com.google.android.material:material:1.12.0")
-    implementation("androidx.constraintlayout:constraintlayout:2.1.4")
-    implementation("androidx.navigation:navigation-fragment-ktx:2.8.2")
-    implementation("androidx.navigation:navigation-ui-ktx:2.8.2")
-    implementation("androidx.datastore:datastore-preferences:1.1.1")
-    implementation("com.squareup.okhttp3:okhttp:4.12.0")
-    implementation("com.squareup.okhttp3:logging-interceptor:4.12.0")
-    implementation("com.squareup.logcat:logcat:0.1")
+    implementation(libs.androidx.corek.ktx)
+    implementation(libs.androidx.appcompat)
+    implementation(libs.androidx.constraintlayout)
+    implementation(libs.androidx.navigation.fragment)
+    implementation(libs.androidx.navigation.ui)
+    implementation(libs.androidx.datastore.preferences)
 
-    testImplementation("junit:junit:4.13.2")
-    androidTestImplementation("androidx.test.ext:junit:1.2.1")
-    androidTestImplementation("androidx.test.espresso:espresso-core:3.6.1")
+    implementation(libs.google.material)
+
+    implementation(libs.squareup.okhttp)
+    implementation(libs.squareup.okhttp.logging.interceptor)
+    implementation(libs.squareup.logcat)
+
+    testImplementation(libs.junit)
+    androidTestImplementation(libs.androidx.junit)
+    androidTestImplementation(libs.androidx.espresso.core)
 }
