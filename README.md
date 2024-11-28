@@ -27,10 +27,11 @@ environment.merchantAccount=<Your merchant account>
 ```
 
 ## Documentation
-See our documentation on [docs.adyen.com](https://docs.adyen.com/point-of-sale/ipp-mobile/card-reader-android)
+See our documentation on [docs.adyen.com](https://docs.adyen.com/point-of-sale/ipp-mobile/card-reader-android).
+See SDK reference on [GitHub](https://adyen.github.io/adyen-pos-mobile-android).
 
 ## Support
-If you have a feature request, or spotted a bug or a technical problem, please contact our support team
+If you have a feature request, or spotted a bug or a technical problem, please contact our support team.
 
 ## License
 MIT license. For more information, see the LICENSE file.
