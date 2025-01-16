@@ -2,7 +2,7 @@ package com.adyen.sampleapp
 
 import com.adyen.ipp.authentication.AuthenticationProvider
 import com.adyen.ipp.authentication.AuthenticationResponse
-import com.adyen.ipp.authentication.MerchantAuthenticationService
+import com.adyen.ipp.api.authentication.MerchantAuthenticationService
 import java.io.IOException
 import kotlin.coroutines.resume
 import kotlinx.coroutines.suspendCancellableCoroutine

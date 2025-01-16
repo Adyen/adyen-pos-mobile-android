@@ -1,5 +1,5 @@
 [versions]
-adyen-pos-mobile-version = "1.5.1"
+adyen-pos-mobile-version = "1.6.0"
 
 androidx-corek-ktx = "1.13.1"
 androidx-appcompat = "1.7.0"
