@@ -22,14 +22,21 @@ val localProps = Properties()
 dependencyResolutionManagement {
     repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
     repositories {
-        // Add your repository configuration here.
         google()
         mavenCentral()
+        // See documentation on our Docs
+        // https://docs.adyen.com/point-of-sale/ipp-mobile/tap-to-pay-android/integration-ttp/#add-sdk
         maven {
-            url = uri(localProps.getProperty("artifacts.url") ?: "ARTIFACTS URL NOT FOUND")
-            credentials {
-                username = localProps.getProperty("artifacts.username")
-                password = localProps.getProperty("artifacts.token")
+            // If you have LIVE credentials, you can change to the commented URL bellow and use LIVE API Key instead.
+            // The LIVE repository also contains the debug artefacts, so the TEST repository is not needed in that case.
+            // url = uri("https://pos-mobile.cdn.adyen.com/adyen-pos-android")
+            url = uri("https://pos-mobile-test.cdn.adyen.com/adyen-pos-android")
+            credentials(HttpHeaderCredentials::class) {
+                name = "x-api-key"
+                value = localProps.getProperty("adyen.repo.xapikey")
+            }
+            authentication {
+                create<HttpHeaderAuthentication>("header")
             }
         }
     }

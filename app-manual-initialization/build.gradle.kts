@@ -77,6 +77,7 @@ androidComponents {
 
 dependencies {
     debugImplementation(libs.pos.mobile.debug)
+    // To build with the release dependencies, you need use the LIVE repository in settings.gradle
     releaseImplementation(libs.pos.mobile.release)
 
     implementation(libs.androidx.corek.ktx)

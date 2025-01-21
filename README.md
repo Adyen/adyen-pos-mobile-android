@@ -16,19 +16,19 @@ The repository contains the following sample applications:
 ## Artifactory Setup
 
 To build the project you need to define some variables in your `local.properties` file locally.
+Documentation on how to generate the API Key to access the Repository can be found [here](https://docs.adyen.com/point-of-sale/ipp-mobile/tap-to-pay-android/integration-ttp/)
+Also, see the `settings.gradle` file on how to switch between the TEST and the LIVE repositories.
 ```
 # URL and credentials to the Maven repository
-artifacts.url=<URL of the repository>
-artifacts.username=<Your username>
-artifacts.token=<Your access token to the repository>
+adyen.repo.xapikey=<Your SDK Download API key>
 # Credentials to the Adyen TEST environment
-environment.apiKey=<Your API key>
 environment.merchantAccount=<Your merchant account>
+environment.apiKey=<Your Merchant Account API key>
 ```
 
 ## Documentation
 See our documentation on [docs.adyen.com](https://docs.adyen.com/point-of-sale/ipp-mobile/card-reader-android).
-See SDK reference on [GitHub](https://adyen.github.io/adyen-pos-mobile-android).
+See SDK API reference on [GitHub](https://adyen.github.io/adyen-pos-mobile-android).
 
 ## Support
 If you have a feature request, or spotted a bug or a technical problem, please contact our support team.
