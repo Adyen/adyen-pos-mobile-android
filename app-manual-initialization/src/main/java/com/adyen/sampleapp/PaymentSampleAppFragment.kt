@@ -12,12 +12,12 @@ import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.startup.AppInitializer
-import com.adyen.ipp.InPersonPayments
-import com.adyen.ipp.InPersonPaymentsInitializer
-import com.adyen.ipp.payment.PaymentInterface
-import com.adyen.ipp.payment.PaymentInterfaceType
-import com.adyen.ipp.payment.TransactionRequest
-import com.adyen.ipp.payment.ui.model.MerchantUiParameters
+import com.adyen.ipp.api.InPersonPayments
+import com.adyen.ipp.api.InPersonPaymentsInitializer
+import com.adyen.ipp.api.payment.PaymentInterface
+import com.adyen.ipp.api.payment.PaymentInterfaceType
+import com.adyen.ipp.api.payment.TransactionRequest
+import com.adyen.ipp.api.ui.MerchantUiParameters
 import com.adyen.sampleapp.databinding.FragmentPaymentBinding
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -71,7 +71,7 @@ class PaymentSampleAppFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         binding.buttonPayNyc1.setOnClickListener {
             uiScope.launch {
-                InPersonPayments.getPaymentInterface(PaymentInterfaceType.CardReader())
+                InPersonPayments.getPaymentInterface(PaymentInterfaceType.createCardReaderType())
                     .fold(
                         onSuccess = { nyc1Interface ->
                             startPayment(nyc1Interface)
@@ -88,7 +88,7 @@ class PaymentSampleAppFragment : Fragment() {
         }
         binding.buttonPayT2p.setOnClickListener {
             uiScope.launch {
-                InPersonPayments.getPaymentInterface(PaymentInterfaceType.TapToPay)
+                InPersonPayments.getPaymentInterface(PaymentInterfaceType.createTapToPayType())
                     .fold(
                         onSuccess = { t2pInterface ->
                             startPayment(t2pInterface)

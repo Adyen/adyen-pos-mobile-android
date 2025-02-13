@@ -12,6 +12,7 @@ misc.xml
 modules.xml
 vcs.xml
 workspace.xml
+kotlinc.xml
 
 # User-specific configurations
 caches/

@@ -8,11 +8,11 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
-import com.adyen.ipp.InPersonPayments
-import com.adyen.ipp.payment.PaymentInterface
-import com.adyen.ipp.payment.PaymentInterfaceType
-import com.adyen.ipp.payment.TransactionRequest
-import com.adyen.ipp.payment.ui.model.MerchantUiParameters
+import com.adyen.ipp.api.InPersonPayments
+import com.adyen.ipp.api.payment.PaymentInterface
+import com.adyen.ipp.api.payment.PaymentInterfaceType
+import com.adyen.ipp.api.payment.TransactionRequest
+import com.adyen.ipp.api.ui.MerchantUiParameters
 import com.adyen.sampleapp.databinding.FragmentPaymentBinding
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -25,6 +25,7 @@ import java.util.Locale
 import java.util.UUID
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.FlowPreview
+import kotlinx.serialization.ExperimentalSerializationApi
 
 /**
  * A simple [Fragment] subclass as the default destination in the navigation.
@@ -66,7 +67,7 @@ class PaymentSampleAppFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         binding.buttonPayNyc1.setOnClickListener {
             uiScope.launch {
-                InPersonPayments.getPaymentInterface(PaymentInterfaceType.CardReader())
+                InPersonPayments.getPaymentInterface(PaymentInterfaceType.createCardReaderType())
                     .fold(
                         onSuccess = { nyc1Interface ->
                             startPayment(nyc1Interface)
@@ -83,7 +84,7 @@ class PaymentSampleAppFragment : Fragment() {
         }
         binding.buttonPayT2p.setOnClickListener {
             uiScope.launch {
-                InPersonPayments.getPaymentInterface(PaymentInterfaceType.TapToPay)
+                InPersonPayments.getPaymentInterface(PaymentInterfaceType.createTapToPayType())
                     .fold(
                         onSuccess = { t2pInterface ->
                             startPayment(t2pInterface)
@@ -101,6 +102,7 @@ class PaymentSampleAppFragment : Fragment() {
     }
 
 
+    @OptIn(ExperimentalSerializationApi::class)
     private suspend fun startPayment(paymentInterface: PaymentInterface<*>) {
         val nexoRequest: String = generateNexoRequest(
             requestedAmount = "5",

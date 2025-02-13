@@ -1,7 +1,7 @@
 package com.adyen.sampleapp
 
-import com.adyen.ipp.authentication.AuthenticationProvider
-import com.adyen.ipp.authentication.AuthenticationResponse
+import com.adyen.ipp.api.authentication.AuthenticationProvider
+import com.adyen.ipp.api.authentication.AuthenticationResponse
 import com.adyen.ipp.api.authentication.MerchantAuthenticationService
 import java.io.IOException
 import kotlin.coroutines.resume
@@ -74,7 +74,7 @@ class MyAuthenticationService : MerchantAuthenticationService() {
                                 val json = JSONObject(response.body!!.string())
                                 continuation.resume(
                                     Result.success(
-                                        AuthenticationResponse(
+                                        AuthenticationResponse.create(
                                             json.optString("sdkData")
                                         )
                                     )
