@@ -1,5 +1,5 @@
 [versions]
-adyen-pos-mobile-version = "1.6.0"
+adyen-pos-mobile-version = "2.0.0"
 
 androidx-corek-ktx = "1.13.1"
 androidx-appcompat = "1.7.0"
@@ -7,8 +7,6 @@ androidx-constraintlayout = "2.1.4"
 androidx-navigation = "2.8.2"
 androidx-datastore-preferences = "1.1.1"
 
-constraintlayout = "2.1.4"
-constraintlayout-version = "2.1.4"
 espresso-core-version = "3.6.1"
 google-material = "1.12.0"
 

@@ -5,7 +5,6 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.navigateUp
-import androidx.startup.AppInitializer
 import com.adyen.ipp.cardreader.api.ui.DeviceManagementActivity
 import com.adyen.sampleapp.databinding.ActivityMainBinding
 import kotlinx.coroutines.ExperimentalCoroutinesApi
