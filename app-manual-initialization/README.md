@@ -14,7 +14,7 @@ A specific `provider` block is added at the end of the application definition in
     android:exported="false"
     tools:node="merge">
     <meta-data
-        android:name="com.adyen.ipp.InPersonPaymentsInitializer"
+        android:name="com.adyen.ipp.api.InPersonPaymentsInitializer"
         tools:node="remove" />
 </provider>
 ```
