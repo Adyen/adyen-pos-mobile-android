@@ -16,7 +16,12 @@ squareup-logcat = "0.1"
 # Testing
 junit = "1.2.1"
 junit-version = "4.13.2"
+agp-version = "8.2.2"
+kotlin-version = "2.1.0"
 
+[plugins]
+android-application = { id = "com.android.application", version.ref = "agp-version" }
+kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin-version" }
 
 [libraries]
 pos-mobile-debug = { group = "com.adyen.ipp", name = "pos-mobile-debug", version.ref = "adyen-pos-mobile-version" }
