@@ -5,12 +5,12 @@ plugins {
 
 android {
     namespace = "com.adyen.sampleapp"
-    compileSdk = 34
+    compileSdk = 35
 
     defaultConfig {
         applicationId = "com.adyen.sampleapp"
         minSdk = 30
-        targetSdk = 34
+        targetSdk = 35
         versionCode = 1
         versionName = "1.0"
 
