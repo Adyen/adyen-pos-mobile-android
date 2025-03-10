@@ -25,7 +25,6 @@ junit = "1.2.1"
 junit-version = "4.13.2"
 
 
-
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp-version" }
 android-library = { id = "com.android.library", version.ref = "agp-version" }
