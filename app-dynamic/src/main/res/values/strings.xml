@@ -1,3 +1,4 @@
 <resources>
-    <string name="app_name">app-dynamic</string>
+    <string name="app_name">Sample Dynamic Module</string>
+    <string name="load_library">Load SDK Module</string>
 </resources>
