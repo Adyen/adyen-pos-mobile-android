@@ -1,19 +1,13 @@
 plugins {
-    alias(libs.plugins.android.application)
+    alias(libs.plugins.android.dynamic.feature)
     alias(libs.plugins.kotlin.android)
 }
-
 android {
-    namespace = "com.adyen.sampleapp"
+    namespace = "com.adyen.sampleapp.dynamic"
     compileSdk = 35
 
     defaultConfig {
-        applicationId = "com.adyen.sampleapp"
         minSdk = 30
-        targetSdk = 35
-        versionCode = 1
-        versionName = "1.0"
-
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
 
@@ -33,12 +27,10 @@ android {
     buildFeatures {
         viewBinding = true
     }
-
-    dynamicFeatures += setOf(":dynamic_sdk")
 }
 
 dependencies {
-    api(libs.feature.delivery)
+    implementation(project(":app-dynamic"))
 
     implementation(libs.androidx.corek.ktx)
     implementation(libs.androidx.appcompat)

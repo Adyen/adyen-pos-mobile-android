@@ -20,7 +20,7 @@ class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
 
-    private val sdkModuleName = "ippmobile"
+    private val sdkModuleName = "dynamic_sdk"
     private lateinit var splitInstallManager: SplitInstallManager
     private val installationListener = SplitInstallStateUpdatedListener { state ->
         Log.e(tag, "onInstalled: ${state.sessionId()} - ${state.status()} - ${state.moduleNames()}")
@@ -53,6 +53,7 @@ class MainActivity : AppCompatActivity() {
     private fun setup() {
         splitInstallManager =  SplitInstallManagerFactory.create(this)
 
+        Log.e(tag, "Installed modules: ${splitInstallManager.installedModules}")
         if (splitInstallManager.installedModules.contains(sdkModuleName)) {
             Log.d(tag, "SDK module is already installed. Skipping.")
             startPaymentScreen()
@@ -94,12 +95,12 @@ class MainActivity : AppCompatActivity() {
 
     private fun startPaymentScreen() {
         Log.d(tag, "startPaymentScreen")
-//        startActivity(
-//            Intent().setClassName(
-//                "com.adyen.sampletestuploadapp",
-//                "com.adyen.sampletestuploadapp.PaymentActivity"
-//            )
-//        )
+        startActivity(
+            Intent().setClassName(
+                "com.adyen.sampleapp",
+                "com.adyen.sampleapp.dynamic.PaymentActivity"
+            )
+        )
         finish()
     }
 }

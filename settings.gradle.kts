@@ -7,6 +7,7 @@ rootProject.name = "Sample App"
 include(
     ":app-default",
     ":app-dynamic",
+    ":dynamic_sdk",
     ":app-manual-initialization",
 )
 
