@@ -1,4 +1,5 @@
 <resources>
     <string name="app_name">Sample Dynamic Module</string>
     <string name="load_library">Load SDK Module</string>
+    <string name="title_dynamic_sdk">Payment Module</string>
 </resources>
