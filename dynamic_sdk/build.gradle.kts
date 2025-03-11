@@ -32,11 +32,19 @@ android {
 dependencies {
     implementation(project(":app-dynamic"))
 
+    debugImplementation(libs.pos.mobile.debug)
+    // To build with the release dependencies, you need use the LIVE repository in settings.gradle
+    releaseImplementation(libs.pos.mobile.release)
+
     implementation(libs.androidx.corek.ktx)
     implementation(libs.androidx.appcompat)
     implementation(libs.google.material)
-    implementation(libs.androidx.activity)
+    implementation(libs.androidx.activity.ktx)
     implementation(libs.androidx.constraintlayout)
+
+    implementation(libs.squareup.okhttp)
+    implementation(libs.squareup.okhttp.logging.interceptor)
+
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
