@@ -40,6 +40,7 @@ pos-mobile-release = { group = "com.adyen.ipp", name = "pos-mobile-release", ver
 payment-tap-to-pay-release = { group = "com.adyen.ipp", name = "payment-tap-to-pay-release", version.ref = "adyen-pos-mobile-version" }
 payment-card-reader-release = { group = "com.adyen.ipp", name = "payment-card-reader-release", version.ref = "adyen-pos-mobile-version" }
 pos-mobile-dynamic-base = { group = "com.adyen.ipp", name = "dynamic-base", version.ref = "adyen-pos-mobile-version" }
+
 feature-delivery = { module = "com.google.android.play:feature-delivery", version.ref = "feature-delivery-version" }
 androidx-corek-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "androidx-corek-ktx" }
 androidx-appcompat = { group = "androidx.appcompat", name = "appcompat", version.ref = "androidx-appcompat" }
