@@ -1,6 +1,7 @@
 import com.android.build.api.variant.BuildConfigField
 import java.io.FileInputStream
 import java.util.Properties
+import kotlin.apply
 
 plugins {
     alias(libs.plugins.android.application)
@@ -30,31 +31,24 @@ android {
     }
 
     buildTypes {
-        getByName("release") {
-            isMinifyEnabled = true
-            isShrinkResources = true
-            proguardFiles(
-                getDefaultProguardFile("proguard-android-optimize.txt"),
-                "proguard-rules.pro"
-            )
-            signingConfig = signingConfigs.getByName("debug")
+        release {
+            isMinifyEnabled = false
+            proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro")
         }
     }
-
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_1_8
-        targetCompatibility = JavaVersion.VERSION_1_8
+        sourceCompatibility = JavaVersion.VERSION_11
+        targetCompatibility = JavaVersion.VERSION_11
     }
-
     kotlinOptions {
-        jvmTarget = "1.8"
-        apiVersion = "1.8"
+        jvmTarget = "11"
     }
-
     buildFeatures {
         viewBinding = true
         buildConfig = true
     }
+
+    dynamicFeatures += setOf(":dynamic_sdk")
 }
 
 androidComponents {
@@ -76,22 +70,18 @@ androidComponents {
 }
 
 dependencies {
-    debugImplementation(libs.pos.mobile.debug)
-    // To build with the release dependencies, you need use the LIVE repository in settings.gradle
-    releaseImplementation(libs.pos.mobile.release)
+    api(libs.feature.delivery)
+
+    debugImplementation(libs.pos.mobile.dynamic.base)
 
     implementation(libs.androidx.corek.ktx)
     implementation(libs.androidx.appcompat)
-    implementation(libs.androidx.constraintlayout)
-    implementation(libs.androidx.navigation.fragment)
-    implementation(libs.androidx.navigation.ui)
-    implementation(libs.androidx.datastore.preferences)
-
     implementation(libs.google.material)
+    implementation(libs.androidx.activity.ktx)
+    implementation(libs.androidx.constraintlayout)
 
-    implementation(libs.squareup.okhttp)
-    implementation(libs.squareup.okhttp.logging.interceptor)
-    implementation(libs.squareup.logcat)
+    // TODO: investigating weird crash with reflection
+    implementation("androidx.lifecycle:lifecycle-viewmodel-android:2.8.7")
 
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
