@@ -33,7 +33,7 @@ kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin-ve
 android-dynamic-feature = { id = "com.android.dynamic-feature", version.ref = "agp-version" }
 
 [libraries]
-feature-delivery = { module = "com.google.android.play:feature-delivery", version.ref = "feature-delivery-version" }
+# Adyen SDK
 pos-mobile-debug = { group = "com.adyen.ipp", name = "pos-mobile-debug", version.ref = "adyen-pos-mobile-version" }
 payment-tap-to-pay-debug = { group = "com.adyen.ipp", name = "payment-tap-to-pay-debug", version.ref = "adyen-pos-mobile-version" }
 payment-card-reader-debug = { group = "com.adyen.ipp", name = "payment-card-reader-debug", version.ref = "adyen-pos-mobile-version" }
@@ -41,9 +41,12 @@ pos-mobile-release = { group = "com.adyen.ipp", name = "pos-mobile-release", ver
 payment-tap-to-pay-release = { group = "com.adyen.ipp", name = "payment-tap-to-pay-release", version.ref = "adyen-pos-mobile-version" }
 payment-card-reader-release = { group = "com.adyen.ipp", name = "payment-card-reader-release", version.ref = "adyen-pos-mobile-version" }
 
+pos-mobile-dynamic-base = { group = "com.adyen.ipp", name = "dynamic-base", version.ref = "adyen-pos-mobile-version" }
+
+feature-delivery = { module = "com.google.android.play:feature-delivery", version.ref = "feature-delivery-version" }
 androidx-corek-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "androidx-corek-ktx" }
 androidx-appcompat = { group = "androidx.appcompat", name = "appcompat", version.ref = "androidx-appcompat" }
-androidx-activity = { group = "androidx.activity", name = "activity", version.ref = "activity-version" }
+androidx-activity-ktx = { group = "androidx.activity", name = "activity-ktx", version.ref = "activity-version" }
 androidx-constraintlayout = { group = "androidx.constraintlayout", name = "constraintlayout", version.ref = "androidx-constraintlayout" }
 androidx-navigation-fragment = { group = "androidx.navigation", name = "navigation-fragment-ktx", version.ref = "androidx-navigation" }
 androidx-navigation-ui = { group = "androidx.navigation", name = "navigation-ui-ktx", version.ref = "androidx-navigation" }
