@@ -23,14 +23,11 @@ import java.util.Base64
 import java.util.Date
 import java.util.Locale
 import java.util.UUID
-import kotlinx.coroutines.ExperimentalCoroutinesApi
-import kotlinx.coroutines.FlowPreview
 import kotlinx.serialization.ExperimentalSerializationApi
 
 /**
  * A simple [Fragment] subclass as the default destination in the navigation.
  */
-@OptIn(ExperimentalCoroutinesApi::class, FlowPreview::class)
 class PaymentSampleAppFragment : Fragment() {
 
     private val logTag = "Transaction"

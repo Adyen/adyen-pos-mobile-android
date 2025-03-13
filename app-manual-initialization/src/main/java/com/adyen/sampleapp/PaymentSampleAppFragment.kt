@@ -25,6 +25,7 @@ import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.FlowPreview
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.launch
+import kotlinx.serialization.ExperimentalSerializationApi
 import logcat.logcat
 import java.util.Base64
 import java.util.Date
@@ -125,6 +126,7 @@ class PaymentSampleAppFragment : Fragment() {
             .initializeComponent(InPersonPaymentsInitializer::class.java)
     }
 
+    @OptIn(ExperimentalSerializationApi::class)
     private suspend fun startPayment(paymentInterface: PaymentInterface<*>) {
         val nexoRequest: String = generateNexoRequest(
             requestedAmount = "5",
