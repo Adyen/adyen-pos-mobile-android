@@ -42,7 +42,7 @@ class MyAuthenticationService : MerchantAuthenticationService() {
     val merchantAccount = BuildConfig.EnvironmentMerchantAccount
 
     // This app is intended to be used only against the TEST environment.
-    val apiUrl = "https://checkout-test.adyen.com/checkout/possdk/v68/sessions"
+    val apiUrl = "https://checkoutpos-test.adyen.com/checkoutpos/v3/auth/certificate/"
 
     // You can also declare this implementation somewhere else and pass it using your Dependency Injection system.
     override val authenticationProvider: AuthenticationProvider
