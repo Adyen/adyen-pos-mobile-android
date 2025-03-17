@@ -72,16 +72,13 @@ androidComponents {
 dependencies {
     api(libs.feature.delivery)
 
-    debugImplementation(libs.pos.mobile.dynamic.base)
+    implementation(libs.pos.mobile.dynamic.base)
 
     implementation(libs.androidx.corek.ktx)
     implementation(libs.androidx.appcompat)
     implementation(libs.google.material)
     implementation(libs.androidx.activity.ktx)
     implementation(libs.androidx.constraintlayout)
-
-    // TODO: investigating weird crash with reflection
-    implementation("androidx.lifecycle:lifecycle-viewmodel-android:2.8.7")
 
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
