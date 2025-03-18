@@ -1,15 +1,11 @@
 package com.adyen.sampleapp.dynamic
 
-import com.adyen.ipp.api.authentication.MerchantAuthenticationService
+import android.app.Service
+import android.content.Intent
+import android.os.IBinder
 import com.adyen.sampleapp.BuildConfig
-import java.io.IOException
-import kotlin.coroutines.resume
-import kotlinx.coroutines.suspendCancellableCoroutine
-import okhttp3.MediaType.Companion.toMediaType
-import okhttp3.RequestBody.Companion.toRequestBody
-import org.json.JSONObject
 
-class DynamicAuthenticationService : MerchantAuthenticationService() {
+class DynamicAuthenticationService : Service() {
 
     /**
      *  ------------
@@ -37,55 +33,59 @@ class DynamicAuthenticationService : MerchantAuthenticationService() {
     val apiUrl = "https://checkout-test.adyen.com/checkout/possdk/v68/sessions"
 
     // You can also declare this implementation somewhere else and pass it using your Dependency Injection system.
-    override val authenticationProvider: com.adyen.ipp.api.authentication.AuthenticationProvider
-        get() = object : com.adyen.ipp.api.authentication.AuthenticationProvider {
-            override suspend fun authenticate(setupToken: String): Result<com.adyen.ipp.api.authentication.AuthenticationResponse> {
-                val client = createOkHttpClient()
+//    override val authenticationProvider: com.adyen.ipp.api.authentication.AuthenticationProvider
+//        get() = object : com.adyen.ipp.api.authentication.AuthenticationProvider {
+//            override suspend fun authenticate(setupToken: String): Result<com.adyen.ipp.api.authentication.AuthenticationResponse> {
+//                val client = createOkHttpClient()
+//
+//                val jsonObject = JSONObject().apply {
+//                    put("merchantAccount", merchantAccount)
+//                    put("setupToken", setupToken)
+//                }
+//                val mediaType = "application/json".toMediaType()
+//                val requestBody = jsonObject.toString().toRequestBody(mediaType)
+//
+//                val request = okhttp3.Request.Builder()
+//                    .url(apiUrl)
+//                    .addHeader("x-api-key", apiKey)
+//                    .post(requestBody)
+//                    .build()
+//
+//                return suspendCancellableCoroutine { continuation ->
+//                    client.newCall(request).enqueue(object : okhttp3.Callback {
+//                        override fun onFailure(call: okhttp3.Call, e: IOException) {
+//                            continuation.resume(Result.failure(Throwable(e)))
+//                        }
+//
+//                        override fun onResponse(call: okhttp3.Call, response: okhttp3.Response) {
+//                            if (response.isSuccessful && response.body != null) {
+//                                val json = JSONObject(response.body!!.string())
+//                                continuation.resume(
+//                                    Result.success(
+//                                        com.adyen.ipp.api.authentication.AuthenticationResponse.Companion.create(
+//                                            json.optString("sdkData")
+//                                        )
+//                                    )
+//                                )
+//                            } else {
+//                                continuation.resume(Result.failure(Throwable("error")))
+//                            }
+//                        }
+//                    })
+//                }
+//            }
+//
+//            private fun createOkHttpClient(): okhttp3.OkHttpClient {
+//                val logging = okhttp3.logging.HttpLoggingInterceptor().apply {
+//                    setLevel(okhttp3.logging.HttpLoggingInterceptor.Level.BODY)
+//                }
+//                return okhttp3.OkHttpClient.Builder().apply {
+//                    addInterceptor(logging)
+//                }.build()
+//            }
+//        }
 
-                val jsonObject = JSONObject().apply {
-                    put("merchantAccount", merchantAccount)
-                    put("setupToken", setupToken)
-                }
-                val mediaType = "application/json".toMediaType()
-                val requestBody = jsonObject.toString().toRequestBody(mediaType)
-
-                val request = okhttp3.Request.Builder()
-                    .url(apiUrl)
-                    .addHeader("x-api-key", apiKey)
-                    .post(requestBody)
-                    .build()
-
-                return suspendCancellableCoroutine { continuation ->
-                    client.newCall(request).enqueue(object : okhttp3.Callback {
-                        override fun onFailure(call: okhttp3.Call, e: IOException) {
-                            continuation.resume(Result.failure(Throwable(e)))
-                        }
-
-                        override fun onResponse(call: okhttp3.Call, response: okhttp3.Response) {
-                            if (response.isSuccessful && response.body != null) {
-                                val json = JSONObject(response.body!!.string())
-                                continuation.resume(
-                                    Result.success(
-                                        com.adyen.ipp.api.authentication.AuthenticationResponse.Companion.create(
-                                            json.optString("sdkData")
-                                        )
-                                    )
-                                )
-                            } else {
-                                continuation.resume(Result.failure(Throwable("error")))
-                            }
-                        }
-                    })
-                }
-            }
-
-            private fun createOkHttpClient(): okhttp3.OkHttpClient {
-                val logging = okhttp3.logging.HttpLoggingInterceptor().apply {
-                    setLevel(okhttp3.logging.HttpLoggingInterceptor.Level.BODY)
-                }
-                return okhttp3.OkHttpClient.Builder().apply {
-                    addInterceptor(logging)
-                }.build()
-            }
-        }
+    override fun onBind(intent: Intent?): IBinder? {
+        TODO("Not yet implemented")
+    }
 }

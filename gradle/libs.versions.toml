@@ -36,7 +36,7 @@ android-dynamic-feature = { id = "com.android.dynamic-feature", version.ref = "a
 # Adyen SDK
 pos-mobile-debug = { group = "com.adyen.ipp", name = "pos-mobile-debug", version.ref = "adyen-pos-mobile-version" }
 pos-mobile-release = { group = "com.adyen.ipp", name = "pos-mobile-release", version.ref = "adyen-pos-mobile-version" }
-pos-mobile-dynamic-base = { group = "com.adyen.ipp", name = "dynamic-base", version.ref = "adyen-pos-mobile-version" }
+pos-mobile-dynamic-base = { group = "com.adyen.ipp", name = "dynamic-base", version = "2.1.0" }
 
 feature-delivery = { module = "com.google.android.play:feature-delivery", version.ref = "feature-delivery-version" }
 androidx-corek-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "androidx-corek-ktx" }

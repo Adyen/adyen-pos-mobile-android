@@ -72,7 +72,7 @@ androidComponents {
 dependencies {
     api(libs.feature.delivery)
 
-    implementation(libs.pos.mobile.dynamic.base)
+//    implementation(libs.pos.mobile.dynamic.base)
 
     implementation(libs.androidx.corek.ktx)
     implementation(libs.androidx.appcompat)
