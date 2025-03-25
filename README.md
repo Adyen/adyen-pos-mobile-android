@@ -27,7 +27,7 @@ environment.apiKey=<Your Merchant Account API key>
 ```
 
 ## Documentation
-See our documentation on [docs.adyen.com](https://docs.adyen.com/point-of-sale/ipp-mobile/card-reader-android).
+See our documentation on [docs.adyen.com](https://docs.adyen.com/point-of-sale/mobile-android/).
 See SDK API reference on [GitHub](https://adyen.github.io/adyen-pos-mobile-android).
 
 ## Support
