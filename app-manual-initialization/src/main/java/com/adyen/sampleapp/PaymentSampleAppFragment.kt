@@ -14,6 +14,7 @@ import androidx.lifecycle.repeatOnLifecycle
 import androidx.startup.AppInitializer
 import com.adyen.ipp.api.InPersonPayments
 import com.adyen.ipp.api.InPersonPaymentsInitializer
+import com.adyen.ipp.api.initialization.InitializationState
 import com.adyen.ipp.api.payment.PaymentInterface
 import com.adyen.ipp.api.payment.PaymentInterfaceType
 import com.adyen.ipp.api.payment.TransactionRequest
@@ -115,8 +116,10 @@ class PaymentSampleAppFragment : Fragment() {
                 InPersonPayments.initialised
                     .collect { sdkInitialized ->
                         // Enabled buttons only when SDK is initialized.
-                        binding.buttonPayNyc1.isEnabled = sdkInitialized
-                        binding.buttonPayT2p.isEnabled = sdkInitialized
+                        binding.buttonPayNyc1.isEnabled =
+                            sdkInitialized == InitializationState.SuccessfulInitialization
+                        binding.buttonPayT2p.isEnabled =
+                            sdkInitialized == InitializationState.SuccessfulInitialization
                     }
             }
         }

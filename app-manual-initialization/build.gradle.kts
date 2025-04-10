@@ -76,9 +76,15 @@ androidComponents {
 }
 
 dependencies {
+    // Be aware that importing additional modules will increase the size of your application.
+    // To optimize your app's size and build times, only include the specific payment features you require.
     debugImplementation(libs.pos.mobile.debug)
+    debugImplementation(libs.payment.tap.to.pay.debug)
+    debugImplementation(libs.payment.card.reader.debug)
     // To build with the release dependencies, you need use the LIVE repository in settings.gradle
     releaseImplementation(libs.pos.mobile.release)
+    releaseImplementation(libs.payment.tap.to.pay.release)
+    releaseImplementation(libs.payment.card.reader.release)
 
     implementation(libs.androidx.corek.ktx)
     implementation(libs.androidx.appcompat)
