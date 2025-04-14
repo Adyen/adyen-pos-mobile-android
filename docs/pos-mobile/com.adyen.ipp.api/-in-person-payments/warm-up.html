@@ -2,7 +2,7 @@
 <html class="no-js">
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1" charset="UTF-8">
-    <title>displayName</title>
+    <title>warmUp</title>
 <link href="../../../images/logo-icon.svg" rel="icon" type="image/svg">    <script>var pathToRoot = "../../../";</script>
     <script>document.documentElement.classList.replace("no-js","js");</script>
     <script>const storage = localStorage.getItem("dokka-dark-mode")
@@ -47,7 +47,7 @@
             </div>
         </div>
         <div class="filter-section" id="filter-section">
-                <button class="platform-tag platform-selector jvm-like" data-active="" data-filter=":payment-card-reader/main">Kotlin</button>
+                <button class="platform-tag platform-selector jvm-like" data-active="" data-filter=":pos-mobile/main">Kotlin</button>
         </div>
     </div>
     <div class="navigation-controls">
@@ -60,12 +60,12 @@
                 <div class="sidebar--inner" id="sideMenu"></div>
             </div>
             <div id="main">
-<div class="main-content" data-page-type="member" id="content" pageids="payment-card-reader::com.adyen.ipp.cardreader.api.device/CardReader/displayName/#/PointingToDeclaration//-1469564173">
-  <div class="breadcrumbs"><a href="../../index.html">payment-card-reader</a><span class="delimiter">/</span><a href="../index.html">com.adyen.ipp.cardreader.api.device</a><span class="delimiter">/</span><a href="index.html">CardReader</a><span class="delimiter">/</span><span class="current">displayName</span></div>
+<div class="main-content" data-page-type="member" id="content" pageids="pos-mobile::com.adyen.ipp.api/InPersonPayments/warmUp/#/PointingToDeclaration//200091519">
+  <div class="breadcrumbs"><a href="../../index.html">pos-mobile</a><span class="delimiter">/</span><a href="../index.html">com.adyen.ipp.api</a><span class="delimiter">/</span><a href="index.html">InPersonPayments</a><span class="delimiter">/</span><span class="current">warmUp</span></div>
   <div class="cover ">
-    <h1 class="cover"><span>display</span><wbr><span><span>Name</span></span></h1>
+    <h1 class="cover"><span>warm</span><wbr><span><span>Up</span></span></h1>
   </div>
-  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":payment-card-reader/main"><div class="symbol monospace"><span class="token keyword">abstract </span><span class="token keyword">val </span><a href="display-name.html">displayName</a><span class="token operator">: </span><span data-unresolved-link="kotlin/String///PointingToDeclaration/">String</span></div><p class="paragraph">Device name including the serial number.</p></div></div>
+  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":pos-mobile/main"><div class="symbol monospace"><div class="block"><div class="block"><span class="token annotation builtin">@</span><span data-unresolved-link="kotlin.jvm/JvmStatic///PointingToDeclaration/"><span class="token annotation builtin">JvmStatic</span></span></div></div><span class="token keyword">suspend </span><span class="token keyword">fun </span><a href="warm-up.html"><span class="token function">warmUp</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">: </span><span data-unresolved-link="kotlin/Result///PointingToDeclaration/">Result</span><span class="token operator">&lt;</span><span data-unresolved-link="kotlin/Unit///PointingToDeclaration/">Unit</span><span class="token operator">&gt;</span></div><p class="paragraph">Performs a warm-up for the SDK. Safe to call and start a transaction without waiting for the result.</p><p class="paragraph">This will:</p><ul><li><p class="paragraph">Establish a new session if necessary.</p></li><li><p class="paragraph">Fetch configuration if necessary.</p></li></ul><p class="paragraph">As a best practice, call the warm-up function:</p><ul><li><p class="paragraph">When the POS app starts. In other words, as soon as the app has the active state.</p></li><li><p class="paragraph">When the POS app returns to the active state after running in the background.</p></li></ul><span class="kdoc-tag"><h4 class="">Return</h4><p class="paragraph">a successful <span data-unresolved-link="kotlin/Result///PointingToDeclaration/">Result</span> if warm up was able to be completed, or a failure with one of the following exceptions:</p><ul><li><p class="paragraph"><a href="../../../payment-common/com.adyen.ipp.api.warmup/-transaction-in-progress-exception/index.html">TransactionInProgressException</a> if warm up is called and a transaction is in progress</p></li><li><p class="paragraph"><a href="../../../payment-common/com.adyen.ipp.api.warmup/-warm-up-in-progress-exception/index.html">WarmUpInProgressException</a> if warm up is called and a warm up is in progress</p></li><li><p class="paragraph"><a href="../../../payment-common/com.adyen.ipp.api.warmup/-warm-up-failed-exception/index.html">WarmUpFailedException</a> if warm up started but failed to execute</p></li></ul></span></div></div>
 </div>
     <div class="footer">
         <a href="#content" id="go-to-top-link" class="footer--button footer--button_go-to-top"></a>
