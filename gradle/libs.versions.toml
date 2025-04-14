@@ -1,5 +1,5 @@
 [versions]
-adyen-pos-mobile-version = "2.1.0"
+adyen-pos-mobile-version = "2.2.0"
 
 androidx-corek-ktx = "1.15.0"
 androidx-appcompat = "1.7.0"
@@ -20,7 +20,12 @@ junit-version = "4.13.2"
 
 [libraries]
 pos-mobile-debug = { group = "com.adyen.ipp", name = "pos-mobile-debug", version.ref = "adyen-pos-mobile-version" }
+payment-tap-to-pay-debug = { group = "com.adyen.ipp", name = "payment-tap-to-pay-debug", version.ref = "adyen-pos-mobile-version" }
+payment-card-reader-debug = { group = "com.adyen.ipp", name = "payment-card-reader-debug", version.ref = "adyen-pos-mobile-version" }
 pos-mobile-release = { group = "com.adyen.ipp", name = "pos-mobile-release", version.ref = "adyen-pos-mobile-version" }
+payment-tap-to-pay-release = { group = "com.adyen.ipp", name = "payment-tap-to-pay-release", version.ref = "adyen-pos-mobile-version" }
+payment-card-reader-release = { group = "com.adyen.ipp", name = "payment-card-reader-release", version.ref = "adyen-pos-mobile-version" }
+
 androidx-corek-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "androidx-corek-ktx" }
 androidx-appcompat = { group = "androidx.appcompat", name = "appcompat", version.ref = "androidx-appcompat" }
 androidx-constraintlayout = { group = "androidx.constraintlayout", name = "constraintlayout", version.ref = "androidx-constraintlayout" }
