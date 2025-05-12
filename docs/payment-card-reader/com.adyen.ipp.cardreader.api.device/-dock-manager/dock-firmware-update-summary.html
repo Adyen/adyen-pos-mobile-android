@@ -2,7 +2,7 @@
 <html class="no-js">
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1" charset="UTF-8">
-    <title>refreshConnectionStateForAttachedDock</title>
+    <title>dockFirmwareUpdateSummary</title>
 <link href="../../../images/logo-icon.svg" rel="icon" type="image/svg">    <script>var pathToRoot = "../../../";</script>
     <script>document.documentElement.classList.replace("no-js","js");</script>
     <script>const storage = localStorage.getItem("dokka-dark-mode")
@@ -60,12 +60,12 @@
                 <div class="sidebar--inner" id="sideMenu"></div>
             </div>
             <div id="main">
-<div class="main-content" data-page-type="member" id="content" pageids="payment-card-reader::com.adyen.ipp.cardreader.api.device/DockManager/refreshConnectionStateForAttachedDock/#/PointingToDeclaration//-1469564173">
-  <div class="breadcrumbs"><a href="../../index.html">payment-card-reader</a><span class="delimiter">/</span><a href="../index.html">com.adyen.ipp.cardreader.api.device</a><span class="delimiter">/</span><a href="index.html">DockManager</a><span class="delimiter">/</span><span class="current">refreshConnectionStateForAttachedDock</span></div>
+<div class="main-content" data-page-type="member" id="content" pageids="payment-card-reader::com.adyen.ipp.cardreader.api.device/DockManager/dockFirmwareUpdateSummary/#/PointingToDeclaration//-1469564173">
+  <div class="breadcrumbs"><a href="../../index.html">payment-card-reader</a><span class="delimiter">/</span><a href="../index.html">com.adyen.ipp.cardreader.api.device</a><span class="delimiter">/</span><a href="index.html">DockManager</a><span class="delimiter">/</span><span class="current">dockFirmwareUpdateSummary</span></div>
   <div class="cover ">
-    <h1 class="cover"><span>refresh</span><wbr><span>Connection</span><wbr><span>State</span><wbr><span>For</span><wbr><span>Attached</span><wbr><span><span>Dock</span></span></h1>
+    <h1 class="cover"><span>dock</span><wbr><span>Firmware</span><wbr><span>Update</span><wbr><span><span>Summary</span></span></h1>
   </div>
-  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":payment-card-reader/main"><div class="symbol monospace"><span class="token keyword">abstract </span><span class="token keyword">suspend </span><span class="token keyword">fun </span><a href="refresh-connection-state-for-attached-dock.html"><span class="token function">refreshConnectionStateForAttachedDock</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span></div><p class="paragraph">Refreshes the connected and attached status of NYC1 Dock, only needed for <a href="../../com.adyen.ipp.cardreader.api.device.dock/-dock-state/-attached/index.html">DockState.Attached</a> to be emitted best to be called in the onResume() of Device Management screens</p></div></div>
+  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":payment-card-reader/main"><div class="symbol monospace"><span class="token keyword">abstract </span><span class="token keyword">suspend </span><span class="token keyword">fun </span><a href="dock-firmware-update-summary.html"><span class="token function">dockFirmwareUpdateSummary</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">: </span><span data-unresolved-link="kotlin/Result///PointingToDeclaration/">Result</span><span class="token operator">&lt;</span><a href="../../com.adyen.ipp.cardreader.api.device.dock.firmware/-available-dock-firmware-update/index.html">AvailableDockFirmwareUpdate</a><span class="token operator">?</span><span class="token operator">&gt;</span></div><p class="paragraph">Returns information about updates available for the current connected dock.</p><span class="kdoc-tag"><h4 class="">Return</h4><p class="paragraph">A nullable instance of <a href="../../com.adyen.ipp.cardreader.api.device.dock.firmware/-available-dock-firmware-update/index.html">AvailableDockFirmwareUpdate</a> wrapped in Kotlin Result, where null means there are no updates available. The result will throw <a href="../../com.adyen.ipp.cardreader.api.device.firmware/-firmware-update-exception/-device-is-not-connected-exception/index.html">DeviceIsNotConnectedException</a> in case there is no connected device, <a href="../../com.adyen.ipp.cardreader.api.device.firmware/-firmware-update-exception/-configuration-not-available-exception/index.html">ConfigurationNotAvailableException</a> in case there is no available configuration loaded and <a href="../../com.adyen.ipp.cardreader.api.device.firmware/-firmware-update-exception/-valid-session-required-exception/index.html">ValidSessionRequiredException</a> if a valid session is required to update firmware.</p></span></div></div>
 </div>
     <div class="footer">
         <a href="#content" id="go-to-top-link" class="footer--button footer--button_go-to-top"></a>
