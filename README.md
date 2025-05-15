@@ -30,6 +30,9 @@ environment.apiKey=<Your Merchant Account API key>
 See our documentation on [docs.adyen.com](https://docs.adyen.com/point-of-sale/mobile-android/).
 See SDK API reference on [GitHub](https://adyen.github.io/adyen-pos-mobile-android).
 
+## Known Issues
+* PIN Entry can occasionally fail in some circumstances when the android device running the SDK is set to a language other than English or when using certain currencies. This issue exists on all releases of the SDK.
+
 ## Support
 If you have a feature request, or spotted a bug or a technical problem, please contact our support team.
 
