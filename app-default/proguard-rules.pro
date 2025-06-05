@@ -22,3 +22,4 @@
 
 -dontwarn java.lang.management.ManagementFactory
 -dontwarn java.lang.management.RuntimeMXBean
+-dontwarn com.adyen.ipp.saf.api.di.SafContainer
