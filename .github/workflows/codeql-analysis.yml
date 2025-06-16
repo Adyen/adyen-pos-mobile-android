@@ -20,7 +20,9 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        language: [ 'java-kotlin' ]  # Kotlin is supported via Java analysis
+        include:
+          - language: java-kotlin
+            build-mode: autobuild
 
     steps:
       - name: Checkout repository
