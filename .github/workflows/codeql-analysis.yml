@@ -1,5 +1,8 @@
 name: "CodeQL"
 
+env:
+  LOCAL_PROPS: x=1
+
 on:
   push:
     branches: [ "test-codeql" ]
