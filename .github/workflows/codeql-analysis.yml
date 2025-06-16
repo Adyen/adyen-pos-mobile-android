@@ -47,12 +47,12 @@ jobs:
       - name: Grant execute permission for gradlew
         run: chmod +x ./gradlew
 
-      - name: Build Android project (app module)
-        run: ./gradlew app:assembleDebug
-
       - name: Write local.properties
         run: |
           echo "$FAKE_LOCAL_PROPERTIES" > local.properties
+
+      - name: Build Android project (app module)
+        run: ./gradlew app:assembleDebug
 
       - name: Perform CodeQL Analysis
         uses: github/codeql-action/analyze@v3
