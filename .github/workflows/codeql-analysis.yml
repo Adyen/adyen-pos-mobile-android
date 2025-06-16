@@ -1,0 +1,47 @@
+name: "CodeQL"
+
+on:
+  push:
+    branches: [ "test-codeql" ]
+  pull_request:
+    branches: [ "test-codeql" ]
+  #schedule:
+  #  - cron: '0 0 * * 0' # every Sunday
+
+jobs:
+  analyze:
+    name: Analyze
+    runs-on: ubuntu-latest
+    permissions:
+      actions: read
+      contents: read
+      security-events: write
+
+    strategy:
+      fail-fast: false
+      matrix:
+        language: [ 'java-kotlin' ]  # Kotlin is supported via Java analysis
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Initialize CodeQL
+        uses: github/codeql-action/init@v3
+        with:
+          languages: ${{ matrix.language }}
+
+      - name: Setup JDK
+        uses: actions/setup-java@v4
+        with:
+          distribution: 'temurin'
+          java-version: '17'
+
+      - name: Grant execute permission for gradlew
+        run: chmod +x ./gradlew
+
+      #- name: Build Android project (app module)
+      #  run: ./gradlew app:assembleDebug
+
+      - name: Perform CodeQL Analysis
+        uses: github/codeql-action/analyze@v3
