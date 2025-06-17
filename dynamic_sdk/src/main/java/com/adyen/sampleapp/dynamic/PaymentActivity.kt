@@ -1,12 +1,12 @@
 package com.adyen.sampleapp.dynamic
 
+import android.content.Context
 import android.icu.text.SimpleDateFormat
 import android.icu.util.TimeZone
 import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
-import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
@@ -19,6 +19,7 @@ import com.adyen.ipp.api.payment.PaymentInterfaceType
 import com.adyen.ipp.api.payment.TransactionRequest
 import com.adyen.ipp.api.ui.MerchantUiParameters
 import com.adyen.sampleapp.dynamic.databinding.ActivityPaymentBinding
+import com.google.android.play.core.splitcompat.SplitCompat
 import java.util.Base64
 import java.util.Date
 import java.util.Locale
@@ -30,8 +31,9 @@ import kotlinx.coroutines.flow.takeWhile
 import kotlinx.coroutines.launch
 import kotlinx.serialization.ExperimentalSerializationApi
 
+private const val TAG = "PaymentActivity"
+
 class PaymentActivity : AppCompatActivity() {
-    private val tag = "PaymentActivity"
 
     private lateinit var binding: ActivityPaymentBinding
 
@@ -39,16 +41,21 @@ class PaymentActivity : AppCompatActivity() {
         val resultText = result.fold(
             onSuccess = { paymentResult ->
                 val decodedResult = String(Base64.getDecoder().decode(paymentResult.data))
-                Log.d(tag, "Result: \n $decodedResult")
+                Log.d(TAG, "Result: \n $decodedResult")
                 if (paymentResult.success) "Payment Successful" else "Payment Failed"
             },
             onFailure = { error ->
-                Log.d(tag, "Result failed with: ${error.message}")
+                Log.d(TAG, "Result failed with: ${error.message}")
                 "Payment Failed"
             },
         )
         Toast.makeText(this, resultText, Toast.LENGTH_LONG).show()
         binding.startPaymentButton.isEnabled = true
+    }
+
+    override fun attachBaseContext(newBase: Context?) {
+        super.attachBaseContext(newBase)
+        SplitCompat.install(this)
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -86,7 +93,7 @@ class PaymentActivity : AppCompatActivity() {
                         startPayment(paymentInterface)
                     },
                     onFailure = { error ->
-                        Log.e(tag, "Failed to create PaymentInterface", error)
+                        Log.e(TAG, "Failed to create PaymentInterface", error)
                     }
                 )
             }

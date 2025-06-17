@@ -9,6 +9,7 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
+        android:name="com.google.android.play.core.splitcompat.SplitCompatApplication"
         android:theme="@style/Theme.SampleApp">
         <activity
             android:name=".MainActivity"
@@ -29,7 +30,6 @@
                 android:name="com.adyen.ipp.api.InPersonPaymentsInitializer"
                 tools:node="remove" />
         </provider>
-
     </application>
 
 </manifest>

@@ -33,6 +33,7 @@ dependencies {
     implementation(project(":app-dynamic"))
 
     debugImplementation(libs.pos.mobile.debug)
+    debugImplementation(libs.payment.tap.to.pay.debug)
     // To build with the release dependencies, you need use the LIVE repository in settings.gradle
     releaseImplementation(libs.pos.mobile.release)
 
