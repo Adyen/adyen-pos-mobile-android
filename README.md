@@ -13,6 +13,9 @@ The repository contains the following sample applications:
 2. `app-manual-initialization` is a more advanced example of manual initialization of the SDK. 
  See [README.md](app-manual-initialization/README.md)
 
+3. `app-dynamic` is an example on how to load the SDK using [Play Feature Delivery](https://developer.android.com/guide/playcore/feature-delivery)
+   See [README.md](app-dynamic/README.md)
+   
 ## Artifactory Setup
 
 To build the project you need to define some variables in your `local.properties` file locally.

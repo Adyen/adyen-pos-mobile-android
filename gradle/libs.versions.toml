@@ -1,8 +1,15 @@
 [versions]
 adyen-pos-mobile-version = "2.4.0"
 
+# Plugins
+agp-version = "8.8.2"
+kotlin-version = "2.1.0"
+
+# Libraries
+feature-delivery-version = "2.1.0"
 androidx-corek-ktx = "1.15.0"
 androidx-appcompat = "1.7.0"
+activity-version = "1.10.1"
 androidx-constraintlayout = "2.2.1"
 androidx-navigation = "2.8.9"
 androidx-datastore-preferences = "1.1.3"
@@ -18,16 +25,26 @@ junit = "1.2.1"
 junit-version = "4.13.2"
 
 
+[plugins]
+android-application = { id = "com.android.application", version.ref = "agp-version" }
+android-library = { id = "com.android.library", version.ref = "agp-version" }
+kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin-version" }
+android-dynamic-feature = { id = "com.android.dynamic-feature", version.ref = "agp-version" }
+
 [libraries]
+# Adyen SDK
 pos-mobile-debug = { group = "com.adyen.ipp", name = "pos-mobile-debug", version.ref = "adyen-pos-mobile-version" }
 payment-tap-to-pay-debug = { group = "com.adyen.ipp", name = "payment-tap-to-pay-debug", version.ref = "adyen-pos-mobile-version" }
 payment-card-reader-debug = { group = "com.adyen.ipp", name = "payment-card-reader-debug", version.ref = "adyen-pos-mobile-version" }
 pos-mobile-release = { group = "com.adyen.ipp", name = "pos-mobile-release", version.ref = "adyen-pos-mobile-version" }
 payment-tap-to-pay-release = { group = "com.adyen.ipp", name = "payment-tap-to-pay-release", version.ref = "adyen-pos-mobile-version" }
 payment-card-reader-release = { group = "com.adyen.ipp", name = "payment-card-reader-release", version.ref = "adyen-pos-mobile-version" }
+pos-mobile-dynamic-base = { group = "com.adyen.ipp", name = "dynamic-base", version.ref = "adyen-pos-mobile-version" }
 
+feature-delivery = { module = "com.google.android.play:feature-delivery", version.ref = "feature-delivery-version" }
 androidx-corek-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "androidx-corek-ktx" }
 androidx-appcompat = { group = "androidx.appcompat", name = "appcompat", version.ref = "androidx-appcompat" }
+androidx-activity-ktx = { group = "androidx.activity", name = "activity-ktx", version.ref = "activity-version" }
 androidx-constraintlayout = { group = "androidx.constraintlayout", name = "constraintlayout", version.ref = "androidx-constraintlayout" }
 androidx-navigation-fragment = { group = "androidx.navigation", name = "navigation-fragment-ktx", version.ref = "androidx-navigation" }
 androidx-navigation-ui = { group = "androidx.navigation", name = "navigation-ui-ktx", version.ref = "androidx-navigation" }
