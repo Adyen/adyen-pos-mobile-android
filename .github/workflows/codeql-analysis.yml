@@ -26,7 +26,7 @@ jobs:
       matrix:
         include:
           - language: java-kotlin
-            build-mode: manual
+            build-mode: none
 
     steps:
       - name: Checkout repository
@@ -51,8 +51,8 @@ jobs:
         run: |
           echo "$FAKE_LOCAL_PROPERTIES" > local.properties
 
-      - name: Build Android project (app module)
-        run: ./gradlew app-default:assembleDebug
+      #- name: Build Android project (app module)
+      #  run: ./gradlew app-default:assembleDebug
 
       - name: Perform CodeQL Analysis
         uses: github/codeql-action/analyze@v3
