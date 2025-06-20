@@ -3,6 +3,15 @@
 import java.io.FileInputStream
 import java.util.Properties
 
+rootProject.name = "Sample App"
+include(
+    ":app-default",
+    ":app-dynamic",
+    ":dynamic_sdk",
+    ":app-manual-initialization",
+)
+
+
 pluginManagement {
     repositories {
         gradlePluginPortal()
@@ -41,5 +50,3 @@ dependencyResolutionManagement {
         }
     }
 }
-rootProject.name = "Sample App"
-include(":app-default", ":app-manual-initialization")
