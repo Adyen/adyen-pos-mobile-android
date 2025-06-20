@@ -10,7 +10,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:name="com.google.android.play.core.splitcompat.SplitCompatApplication"
-        android:theme="@style/Theme.SampleApp">
+        android:theme="@style/Theme.SampleApp"
+        android:usesCleartextTraffic="false"
+        >
         <activity
             android:name=".MainActivity"
             android:exported="true">

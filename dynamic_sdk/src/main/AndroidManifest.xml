@@ -14,7 +14,10 @@
     </dist:module>
 
     <application
-        tools:ignore="MissingApplicationIcon">
+        android:usesCleartextTraffic="false"
+        android:allowBackup="false"
+        tools:ignore="MissingApplicationIcon"
+        >
         <activity
             android:name=".PaymentActivity"
             android:exported="false" />
