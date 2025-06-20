@@ -6,9 +6,9 @@ env:
 
 on:
   push:
-    branches: [ "test-codeql" ]
+    branches: [ "main" ]
   pull_request:
-    branches: [ "test-codeql" ]
+    branches: [ "main" ]
   schedule:
     - cron: '0 0 * * 0' # every Sunday
 
