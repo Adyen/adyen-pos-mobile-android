@@ -38,28 +38,11 @@ jobs:
           languages: ${{ matrix.language }}
           build-mode: ${{ matrix.build-mode }}
 
-      - name: Setup JDK
-        uses: actions/setup-java@v4
-        with:
-          distribution: 'temurin'
-          java-version: '17'
-
-      - name: Grant execute permission for gradlew
-        run: chmod +x ./gradlew
-
       - name: Write local.properties
         run: |
           echo "$FAKE_LOCAL_PROPERTIES" > local.properties
-
-      #- name: Build Android project (app module)
-      #  run: ./gradlew app-default:assembleDebug
 
       - name: Perform CodeQL Analysis
         uses: github/codeql-action/analyze@v3
         with:
           output: results
-
-      - name: Upload SARIF results
-        uses: github/codeql-action/upload-sarif@v3
-        with:
-          sarif_file: results/codeql.sarif
