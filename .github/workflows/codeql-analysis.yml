@@ -1,12 +1,16 @@
 name: "CodeQL"
 
+env:
+  FAKE_LOCAL_PROPERTIES: |
+    some.key=value
+
 on:
   push:
     branches: [ "test-codeql" ]
   pull_request:
     branches: [ "test-codeql" ]
-  schedule:
-    - cron: '0 0 * * 0' # every Sunday
+  #schedule:
+  #  - cron: '0 0 * * 0' # every Sunday
 
 jobs:
   analyze:
@@ -33,6 +37,10 @@ jobs:
         with:
           languages: ${{ matrix.language }}
           build-mode: ${{ matrix.build-mode }}
+
+      - name: Write local.properties
+        run: |
+          echo "$FAKE_LOCAL_PROPERTIES" > local.properties
 
       - name: Perform CodeQL Analysis
         uses: github/codeql-action/analyze@v3
