@@ -9,8 +9,8 @@ on:
     branches: [ "main" ]
   pull_request:
     branches: [ "main" ]
-  #schedule:
-  #  - cron: '0 0 * * 0' # every Sunday
+  schedule:
+    - cron: '0 0 * * 0' # every Sunday
 
 jobs:
   analyze:
@@ -26,7 +26,7 @@ jobs:
       matrix:
         include:
           - language: java-kotlin
-            build-mode: none
+            build-mode: manual
 
     steps:
       - name: Checkout repository
@@ -51,7 +51,7 @@ jobs:
           languages: ${{ matrix.language }}
           build-mode: ${{ matrix.build-mode }}
 
-      - name: Fake Build (Gradle no-op)
+      - name: Skeleton Build
         run: ./gradlew help
 
       - name: Perform CodeQL Analysis
