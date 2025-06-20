@@ -32,17 +32,27 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
+      - name: Write local.properties
+        run: |
+          echo "$FAKE_LOCAL_PROPERTIES" > local.properties
+
+      - name: Setup JDK
+        uses: actions/setup-java@v4
+        with:
+          java-version: '17'
+          distribution: 'temurin'
+
+      - name: Make Gradle wrapper executable
+        run: chmod +x ./gradlew
+
       - name: Initialize CodeQL
         uses: github/codeql-action/init@v3
         with:
           languages: ${{ matrix.language }}
           build-mode: ${{ matrix.build-mode }}
 
-      - name: Write local.properties
-        run: |
-          echo "$FAKE_LOCAL_PROPERTIES" > local.properties
+      - name: Fake Build (Gradle no-op)
+        run: ./gradlew help
 
       - name: Perform CodeQL Analysis
         uses: github/codeql-action/analyze@v3
-        with:
-          output: results
