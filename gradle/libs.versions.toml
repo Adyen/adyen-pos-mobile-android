@@ -1,5 +1,5 @@
 [versions]
-adyen-pos-mobile-version = "2.4.0"
+adyen-pos-mobile-version = "2.5.1"
 
 # Plugins
 agp-version = "8.8.2"
