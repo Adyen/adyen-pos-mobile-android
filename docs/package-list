@@ -13,6 +13,7 @@ com.adyen.ipp.api.authentication
 com.adyen.ipp.api.device
 com.adyen.ipp.api.diagnosis
 com.adyen.ipp.api.exception
+com.adyen.ipp.api.initialization
 com.adyen.ipp.api.payment
 com.adyen.ipp.api.ui
 com.adyen.ipp.api.warmup
