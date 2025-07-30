@@ -33,6 +33,7 @@ class MainActivity : AppCompatActivity() {
                 }
 
                 SplitInstallSessionStatus.INSTALLED -> {
+                    DynamicModuleCountingResource.resource.decrement()
                     Toast.makeText(this, "Dynamic module installation complete.", Toast.LENGTH_SHORT).show()
                     openPaymentScreen()
                 }
@@ -100,6 +101,7 @@ class MainActivity : AppCompatActivity() {
             .addOnFailureListener { exception ->
                 Log.e(TAG, "Install failed with: ${exception.message}", exception)
             }
+        DynamicModuleCountingResource.resource.increment()
     }
 
     private fun openPaymentScreen() {

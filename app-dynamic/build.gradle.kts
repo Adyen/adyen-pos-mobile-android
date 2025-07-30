@@ -82,10 +82,13 @@ dependencies {
     implementation(libs.google.material)
     implementation(libs.androidx.activity.ktx)
     implementation(libs.androidx.constraintlayout)
+    implementation(libs.androidx.espresso.idling.resource)
 
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
+    androidTestImplementation(libs.androidx.test.runner)
+    androidTestImplementation(libs.androidx.test.rules)
 }
 
 // ===================================================================
@@ -147,7 +150,26 @@ tasks.register("installDynamicDebugApp") {
     group = "Dynamic App Install"
     description = "Uninstalls, cleans, builds / installs the a debug app."
     dependsOn(tasks.named("uninstallApp"))
-    dependsOn(tasks.named("clean"))
     dependsOn(tasks.named("installDebugApks"))
 }
 
+tasks.register("runSmokeTest", Exec::class) {
+    group = "Verification"
+    description = "Installs the dynamic app and test APK, then runs the SmokeTest."
+
+    dependsOn(tasks.named("clean"))
+    dependsOn(tasks.named("installDebugAndroidTest"))
+    dependsOn(tasks.named("installDynamicDebugApp"))
+
+    commandLine(
+        android.adbExecutable,
+        "shell",
+        "am",
+        "instrument",
+        "-w",
+        "-e",
+        "class",
+        "com.adyen.sampleapp.SmokeTest",
+        "com.adyen.sampleapp.test/androidx.test.runner.AndroidJUnitRunner"
+    )
+}
