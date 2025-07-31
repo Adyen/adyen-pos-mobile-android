@@ -1,4 +1,6 @@
 import com.android.build.api.variant.BuildConfigField
+import org.jetbrains.kotlin.gradle.dsl.JvmTarget
+import org.jetbrains.kotlin.gradle.dsl.KotlinVersion
 import java.io.FileInputStream
 import java.util.Properties
 
@@ -17,12 +19,12 @@ val localProperties = Properties()
 
 android {
     namespace = "com.adyen.sampleapp"
-    compileSdk = 35
+    compileSdk = 36
 
     defaultConfig {
         applicationId = "com.adyen.sampleapp"
         minSdk = 30
-        targetSdk = 35
+        targetSdk = 36
         versionCode = 1
         versionName = "1.0"
 
@@ -46,28 +48,29 @@ android {
         targetCompatibility = JavaVersion.VERSION_1_8
     }
 
-    kotlinOptions {
-        jvmTarget = "1.8"
-        apiVersion = "1.8"
-    }
-
     buildFeatures {
         viewBinding = true
         buildConfig = true
     }
 }
 
+kotlin {
+    compilerOptions {
+        jvmTarget = JvmTarget.JVM_1_8
+        apiVersion = KotlinVersion.KOTLIN_2_2
+    }
+}
+
 androidComponents {
-    onVariants {
-        it.apply {
-            val environmentApiKey = localProperties.getProperty("environment.apiKey")
-            buildConfigFields.put(
+    onVariants { variant ->
+        val environmentApiKey = localProperties.getProperty("environment.apiKey")
+        val environmentMerchantAccount = localProperties.getProperty("environment.merchantAccount")
+        variant.buildConfigFields?.run {
+            put(
                 "EnvironmentApiKey",
                 BuildConfigField("String", "\"$environmentApiKey\"", "API Key"),
             )
-            val environmentMerchantAccount =
-                localProperties.getProperty("environment.merchantAccount")
-            buildConfigFields.put(
+            put(
                 "EnvironmentMerchantAccount",
                 BuildConfigField("String", "\"$environmentMerchantAccount\"", "Merchant Account"),
             )
@@ -81,23 +84,22 @@ dependencies {
     debugImplementation(libs.pos.mobile.debug)
     debugImplementation(libs.payment.tap.to.pay.debug)
     debugImplementation(libs.payment.card.reader.debug)
-    // To build with the release dependencies, you need use the LIVE repository in settings.gradle
+
+    // To build with the release dependencies, you need use the LIVE repository in `settings.gradle`.
     releaseImplementation(libs.pos.mobile.release)
     releaseImplementation(libs.payment.tap.to.pay.release)
     releaseImplementation(libs.payment.card.reader.release)
 
-    implementation(libs.androidx.corek.ktx)
     implementation(libs.androidx.appcompat)
     implementation(libs.androidx.constraintlayout)
+    implementation(libs.androidx.corek.ktx)
+    implementation(libs.androidx.datastore.preferences)
     implementation(libs.androidx.navigation.fragment)
     implementation(libs.androidx.navigation.ui)
-    implementation(libs.androidx.datastore.preferences)
-
     implementation(libs.google.material)
-
+    implementation(libs.squareup.logcat)
     implementation(libs.squareup.okhttp)
     implementation(libs.squareup.okhttp.logging.interceptor)
-    implementation(libs.squareup.logcat)
 
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
