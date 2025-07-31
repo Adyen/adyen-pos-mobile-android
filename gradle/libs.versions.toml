@@ -9,7 +9,7 @@ kotlin-version = "2.2.0"
 activity-version = "1.10.1"
 androidx-appcompat = "1.7.1"
 androidx-constraintlayout = "2.2.1"
-androidx-corek-ktx = "1.16.0"
+androidx-core-ktx = "1.16.0"
 androidx-datastore-preferences = "1.1.7"
 androidx-navigation = "2.9.3"
 espresso-core-version = "3.7.0"
@@ -42,7 +42,7 @@ pos-mobile-release = { group = "com.adyen.ipp", name = "pos-mobile-release", ver
 androidx-activity-ktx = { group = "androidx.activity", name = "activity-ktx", version.ref = "activity-version" }
 androidx-appcompat = { group = "androidx.appcompat", name = "appcompat", version.ref = "androidx-appcompat" }
 androidx-constraintlayout = { group = "androidx.constraintlayout", name = "constraintlayout", version.ref = "androidx-constraintlayout" }
-androidx-corek-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "androidx-corek-ktx" }
+androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "androidx-core-ktx" }
 androidx-datastore-preferences = { group = "androidx.datastore", name = "datastore-preferences", version.ref = "androidx-datastore-preferences" }
 androidx-navigation-fragment = { group = "androidx.navigation", name = "navigation-fragment-ktx", version.ref = "androidx-navigation" }
 androidx-navigation-ui = { group = "androidx.navigation", name = "navigation-ui-ktx", version.ref = "androidx-navigation" }

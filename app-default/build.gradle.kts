@@ -92,7 +92,7 @@ dependencies {
 
     implementation(libs.androidx.appcompat)
     implementation(libs.androidx.constraintlayout)
-    implementation(libs.androidx.corek.ktx)
+    implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.datastore.preferences)
     implementation(libs.androidx.navigation.fragment)
     implementation(libs.androidx.navigation.ui)
