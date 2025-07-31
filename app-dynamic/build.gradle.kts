@@ -1,4 +1,6 @@
 import com.android.build.api.variant.BuildConfigField
+import org.jetbrains.kotlin.gradle.dsl.JvmTarget
+import org.jetbrains.kotlin.gradle.dsl.KotlinVersion
 import java.io.FileInputStream
 import java.util.Properties
 import kotlin.apply
@@ -18,12 +20,12 @@ val localProperties = Properties()
 
 android {
     namespace = "com.adyen.sampleapp"
-    compileSdk = 35
+    compileSdk = 36
 
     defaultConfig {
         applicationId = "com.adyen.sampleapp"
         minSdk = 30
-        targetSdk = 35
+        targetSdk = 36
         versionCode = 1
         versionName = "1.0"
 
@@ -39,13 +41,12 @@ android {
             )
         }
     }
+
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_11
         targetCompatibility = JavaVersion.VERSION_11
     }
-    kotlinOptions {
-        jvmTarget = "11"
-    }
+
     buildFeatures {
         viewBinding = true
         buildConfig = true
@@ -54,17 +55,23 @@ android {
     dynamicFeatures += setOf(":dynamic_sdk")
 }
 
+kotlin {
+    compilerOptions {
+        jvmTarget = JvmTarget.JVM_11
+        apiVersion = KotlinVersion.KOTLIN_2_2
+    }
+}
+
 androidComponents {
-    onVariants {
-        it.apply {
-            val environmentApiKey = localProperties.getProperty("environment.apiKey")
-            buildConfigFields.put(
+    onVariants { variant ->
+        val environmentApiKey = localProperties.getProperty("environment.apiKey")
+        val environmentMerchantAccount = localProperties.getProperty("environment.merchantAccount")
+        variant.buildConfigFields?.run {
+            put(
                 "EnvironmentApiKey",
                 BuildConfigField("String", "\"$environmentApiKey\"", "API Key"),
             )
-            val environmentMerchantAccount =
-                localProperties.getProperty("environment.merchantAccount")
-            buildConfigFields.put(
+            put(
                 "EnvironmentMerchantAccount",
                 BuildConfigField("String", "\"$environmentMerchantAccount\"", "Merchant Account"),
             )
@@ -73,15 +80,15 @@ androidComponents {
 }
 
 dependencies {
-    api(libs.feature.delivery)
+    api(libs.google.feature.delivery)
 
     implementation(libs.pos.mobile.dynamic.base)
 
-    implementation(libs.androidx.corek.ktx)
-    implementation(libs.androidx.appcompat)
-    implementation(libs.google.material)
     implementation(libs.androidx.activity.ktx)
+    implementation(libs.androidx.appcompat)
     implementation(libs.androidx.constraintlayout)
+    implementation(libs.androidx.core.ktx)
+    implementation(libs.google.material)
 
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
