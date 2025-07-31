@@ -80,7 +80,7 @@ androidComponents {
 }
 
 dependencies {
-    api(libs.feature.delivery)
+    api(libs.google.feature.delivery)
 
     implementation(libs.pos.mobile.dynamic.base)
 
