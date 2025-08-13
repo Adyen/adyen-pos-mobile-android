@@ -14,6 +14,7 @@ import androidx.lifecycle.repeatOnLifecycle
 import androidx.startup.AppInitializer
 import com.adyen.ipp.api.InPersonPayments
 import com.adyen.ipp.api.InPersonPaymentsInitializer
+import com.adyen.ipp.api.InPersonPaymentsTools
 import com.adyen.ipp.api.initialization.InitializationState
 import com.adyen.ipp.api.payment.PaymentInterface
 import com.adyen.ipp.api.payment.PaymentInterfaceType
@@ -25,6 +26,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.FlowPreview
 import kotlinx.coroutines.Job
+import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 import kotlinx.serialization.ExperimentalSerializationApi
 import logcat.logcat
@@ -113,20 +115,13 @@ class PaymentSampleAppFragment : Fragment() {
         // Enabled buttons when the SDK is initialized manually.
         viewLifecycleOwner.lifecycleScope.launch {
             repeatOnLifecycle(Lifecycle.State.RESUMED) {
-                InPersonPayments.initialised
-                    .collect { sdkInitialized ->
-                        // Enabled buttons only when SDK is initialized.
-                        binding.buttonPayNyc1.isEnabled =
-                            sdkInitialized == InitializationState.SuccessfulInitialization
-                        binding.buttonPayT2p.isEnabled =
-                            sdkInitialized == InitializationState.SuccessfulInitialization
-                    }
+                // Manually trigger the initialization for the SDK.
+                val state = InPersonPaymentsTools.initializeManually(requireContext())
+                // Enabled buttons only when SDK is initialized.
+                binding.buttonPayNyc1.isEnabled = state == InitializationState.SuccessfulInitialization
+                binding.buttonPayT2p.isEnabled = state == InitializationState.SuccessfulInitialization
             }
         }
-
-        // Manually trigger the initialization for the SDK.
-        AppInitializer.getInstance(requireContext())
-            .initializeComponent(InPersonPaymentsInitializer::class.java)
     }
 
     @OptIn(ExperimentalSerializationApi::class)
