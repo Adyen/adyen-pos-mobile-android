@@ -7,6 +7,7 @@ com.adyen.ipp.cardreader.api.device
 com.adyen.ipp.cardreader.api.device.dock
 com.adyen.ipp.cardreader.api.device.dock.firmware
 com.adyen.ipp.cardreader.api.device.firmware
+com.adyen.ipp.cardreader.api.prepare
 com.adyen.ipp.cardreader.api.ui
 module:payment-common
 com.adyen.ipp.api.authentication
