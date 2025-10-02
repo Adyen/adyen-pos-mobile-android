@@ -1,8 +1,8 @@
 [versions]
-adyen-pos-mobile-version = "2.7.0"
+adyen-pos-mobile-version = "2.8.0"
 
 # Sample app plugins.
-agp-version = "8.12.0"
+agp-version = "8.13.0"
 kotlin-version = "2.2.0"
 
 # Sample app dependencies.
