@@ -1,0 +1,1 @@
+sourceset_dependencies = '{":payment-common/main":[],":payment-tap-to-pay/main":[],":payment-card-reader/main":[],":security-api/main":[],":pos-mobile/main":[]}'
