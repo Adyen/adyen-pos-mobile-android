@@ -85,7 +85,7 @@ class PaymentActivity : AppCompatActivity() {
 
             lifecycleScope.launch {
                 // Suspend until SDK is initialized
-                InPersonPayments.initialised.takeWhile { true }.first()
+                InPersonPayments.initialized.takeWhile { true }.first()
 
                 val paymentInterfaceResult = InPersonPayments.getPaymentInterface(PaymentInterfaceType.createTapToPayType())
                 paymentInterfaceResult.fold(

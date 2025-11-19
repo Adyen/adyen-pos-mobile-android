@@ -37,6 +37,7 @@ dependencies {
     // To build with the release dependencies, you need use the LIVE repository in settings.gradle
     releaseImplementation(libs.pos.mobile.release)
 
+    implementation(libs.kotlinx.coroutines.core)
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
     implementation(libs.google.material)
