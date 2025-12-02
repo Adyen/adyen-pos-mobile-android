@@ -91,6 +91,11 @@ dependencies {
     implementation(libs.google.material)
     implementation(libs.kotlinx.coroutines.core)
 
+    implementation(libs.squareup.okhttp)
+    implementation(libs.squareup.okhttp.logging.interceptor)
+
+    implementation(libs.kotlin.reflect)
+
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
