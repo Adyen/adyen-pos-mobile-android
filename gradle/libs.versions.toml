@@ -53,6 +53,8 @@ kotlinx-coroutines-core = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-c
 squareup-logcat = { group = "com.squareup.logcat", name = "logcat", version.ref = "squareup-logcat" }
 squareup-okhttp = { group = "com.squareup.okhttp3", name = "okhttp", version.ref = "squareup-okhttp3" }
 squareup-okhttp-logging-interceptor = { group = "com.squareup.okhttp3", name = "logging-interceptor", version.ref = "squareup-okhttp3" }
+kotlin-reflect =                    { group = "org.jetbrains.kotlin",                name = "kotlin-reflect",                    version.ref = "kotlin-version" }
+
 
 # Testing.
 androidx-espresso-core = { module = "androidx.test.espresso:espresso-core", version.ref = "android-espresso-core-version" }
