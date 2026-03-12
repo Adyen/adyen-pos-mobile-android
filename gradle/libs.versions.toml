@@ -3,7 +3,7 @@ adyen-pos-mobile-version = "2.14.0"
 
 # Sample app plugins.
 agp-version = "9.1.0"
-kotlin-version = "2.2.21"
+kotlin-version = "2.3.10"
 
 # Sample app dependencies.
 activity-version = "1.13.0"
