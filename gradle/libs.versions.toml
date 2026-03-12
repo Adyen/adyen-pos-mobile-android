@@ -1,22 +1,22 @@
 [versions]
-adyen-pos-mobile-version = "2.13.0"
+adyen-pos-mobile-version = "2.14.0"
 
 # Sample app plugins.
-agp-version = "8.13.0"
-kotlin-version = "2.2.0"
+agp-version = "9.1.0"
+kotlin-version = "2.3.10"
 
 # Sample app dependencies.
-activity-version = "1.10.1"
+activity-version = "1.13.0"
 androidx-appcompat = "1.7.1"
 androidx-constraintlayout = "2.2.1"
-androidx-core-ktx = "1.16.0"
-androidx-datastore-preferences = "1.1.7"
-androidx-navigation = "2.9.3"
+androidx-core-ktx = "1.18.0"
+androidx-datastore-preferences = "1.2.1"
+androidx-navigation = "2.9.7"
 google-feature-delivery-version = "2.1.0"
-google-material = "1.12.0"
-kotlinx-coroutines-core-version = "1.10.1"
+google-material = "1.13.0"
+kotlinx-coroutines-core-version = "1.10.2"
 squareup-logcat = "0.4"
-squareup-okhttp3 = "5.1.0"
+squareup-okhttp3 = "5.3.2"
 
 # Testing.
 android-espresso-core-version = "3.7.0"
@@ -26,7 +26,6 @@ junit-version = "4.13.2"
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp-version" }
 android-library = { id = "com.android.library", version.ref = "agp-version" }
-kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin-version" }
 android-dynamic-feature = { id = "com.android.dynamic-feature", version.ref = "agp-version" }
 
 [libraries]
@@ -53,7 +52,7 @@ kotlinx-coroutines-core = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-c
 squareup-logcat = { group = "com.squareup.logcat", name = "logcat", version.ref = "squareup-logcat" }
 squareup-okhttp = { group = "com.squareup.okhttp3", name = "okhttp", version.ref = "squareup-okhttp3" }
 squareup-okhttp-logging-interceptor = { group = "com.squareup.okhttp3", name = "logging-interceptor", version.ref = "squareup-okhttp3" }
-kotlin-reflect =                    { group = "org.jetbrains.kotlin",                name = "kotlin-reflect",                    version.ref = "kotlin-version" }
+kotlin-reflect = { group = "org.jetbrains.kotlin", name = "kotlin-reflect", version.ref = "kotlin-version" }
 
 
 # Testing.
