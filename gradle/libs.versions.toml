@@ -26,7 +26,6 @@ junit-version = "4.13.2"
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp-version" }
 android-library = { id = "com.android.library", version.ref = "agp-version" }
-kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin-version" }
 android-dynamic-feature = { id = "com.android.dynamic-feature", version.ref = "agp-version" }
 
 [libraries]
@@ -53,7 +52,7 @@ kotlinx-coroutines-core = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-c
 squareup-logcat = { group = "com.squareup.logcat", name = "logcat", version.ref = "squareup-logcat" }
 squareup-okhttp = { group = "com.squareup.okhttp3", name = "okhttp", version.ref = "squareup-okhttp3" }
 squareup-okhttp-logging-interceptor = { group = "com.squareup.okhttp3", name = "logging-interceptor", version.ref = "squareup-okhttp3" }
-kotlin-reflect =                    { group = "org.jetbrains.kotlin",                name = "kotlin-reflect",                    version.ref = "kotlin-version" }
+kotlin-reflect = { group = "org.jetbrains.kotlin", name = "kotlin-reflect", version.ref = "kotlin-version" }
 
 
 # Testing.
