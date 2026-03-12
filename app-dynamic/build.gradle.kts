@@ -7,7 +7,6 @@ import kotlin.apply
 
 plugins {
     alias(libs.plugins.android.application)
-    alias(libs.plugins.kotlin.android)
 }
 
 val localPropsFile: String =
@@ -114,7 +113,10 @@ val buildType = "debug"
 
 tasks.register("uninstallApp", Exec::class) {
     description = "Helper Tasks: Uninstalls '$dynamicAppId' from the connected device."
-    commandLine(android.adbExecutable, "shell", "pm", "uninstall", "--user", "0", dynamicAppId)
+    val sdkDir = System.getenv("ANDROID_HOME")
+        ?: localProperties.getProperty("sdk.dir")
+        ?: error("Android SDK directory not found. Set ANDROID_HOME or sdk.dir in local.properties.")
+    commandLine("$sdkDir/platform-tools/adb", "shell", "pm", "uninstall", "--user", "0", dynamicAppId)
     isIgnoreExitValue = true
 }
 
