@@ -1,1 +1,1 @@
-sourceset_dependencies = '{":payment-common/main":[],":payment-card-reader/main":[],":pos-mobile/main":[]}'
+sourceset_dependencies = '{":payment-common/liveDynamicObfuscated":[],":payment-card-reader/liveDynamicObfuscated":[],":pos-mobile/liveDynamicObfuscated":[]}'
