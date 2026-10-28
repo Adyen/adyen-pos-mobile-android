@@ -1,9 +1,9 @@
 [versions]
-adyen-pos-mobile-version = "2.21.0"
+adyen-pos-mobile-version = "2.22.0"
 
 # Sample app plugins.
 agp-version = "9.1.0"
-kotlin-version = "2.3.10"
+kotlin-version = "2.4.0"
 
 # Sample app dependencies.
 activity-version = "1.13.0"
@@ -27,6 +27,7 @@ junit-version = "4.13.2"
 android-application = { id = "com.android.application", version.ref = "agp-version" }
 android-library = { id = "com.android.library", version.ref = "agp-version" }
 android-dynamic-feature = { id = "com.android.dynamic-feature", version.ref = "agp-version" }
+kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin-version" }
 
 [libraries]
 # Adyen SDK.
